@@ -27,7 +27,7 @@ export default function RevealB({ onTermClick }: { onTermClick: (k: TermKey) => 
                 initial={{ opacity: 0, x: -28 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.45, delay: i * 0.04 }}
-                viewport={{ margin: '-42% 0px -42% 0px' }}
+                viewport={{ once: true, margin: '-42% 0px -42% 0px' }}
                 onViewportEnter={() => setActive(p.key)}
               >
                 <PrincipleCard p={p} />
