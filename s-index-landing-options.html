@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-index &middot; three landing page directions</title>
+<style>
+/* ============================================================
+   SHARED TOKENS
+   the four principle colours, taken from the team's own slide.
+   they are semantic: a colour always means the same principle.
+   ============================================================ */
+:root{
+  --p1:#2e7d74; --p1-l:#7fd3c7; --p1-w:#e7f2f0;
+  --p2:#a8802f; --p2-l:#e8c37a; --p2-w:#faf1de;
+  --p3:#4a5aa8; --p3-l:#9aa8ea; --p3-w:#e9ecf8;
+  --p4:#ac4d63; --p4-l:#e69aac; --p4-w:#fae9ed;
+  --break:#d96a6a;
+  --deep:#0b2422;
+  --ink:#0d1a19; --ink-2:#41544f; --ink-3:#7b8d89;
+  --rule:#dde5e3; --rule-2:#eef2f1; --paper:#fdfdfc;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Inter,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.65 var(--serif);-webkit-font-smoothing:antialiased}
+
+/* ---------- tab chrome (not part of the site) ---------- */
+.tabs{position:sticky;top:0;z-index:500;background:#08110f;color:#fff;
+  padding:10px 22px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tabs .lbl{font:600 10px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;
+  opacity:.45;margin-right:8px}
+.tabs button{font:600 12.5px/1 var(--sans);color:rgba(255,255,255,.65);background:transparent;
+  border:1px solid rgba(255,255,255,.18);padding:9px 15px;border-radius:6px;cursor:pointer;
+  transition:all .16s var(--ease)}
+.tabs button:hover{color:#fff;border-color:rgba(255,255,255,.4)}
+.tabs button.on{background:#fff;color:#08110f;border-color:#fff}
+.tabs .note{margin-left:auto;font:400 11px/1.4 var(--sans);opacity:.45;max-width:36ch}
+
+.opt{display:none}
+.opt.on{display:block}
+
+.hdr{background:var(--rule-2);border-bottom:1px solid var(--rule);padding:16px 26px}
+.hdr .in{max-width:1080px;margin:0 auto}
+.hdr b{font:600 13px/1.4 var(--sans);display:block;margin-bottom:3px}
+.hdr span{font:400 13px/1.5 var(--sans);color:var(--ink-2)}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+
+/* shared bottom section */
+.tail{padding:56px 0;border-top:1px solid var(--rule)}
+.tail .k{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:16px}
+.tail h2{font:600 27px/1.25 var(--serif);margin:0 0 12px;letter-spacing:-.01em}
+.tail p{color:var(--ink-2);max-width:60ch;margin:0 0 26px;font-size:16.5px}
+.rcs{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.rc{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:21px 23px;
+  display:flex;align-items:center;gap:17px;cursor:pointer;
+  transition:border-color .16s var(--ease),transform .16s var(--ease)}
+.rc:hover{border-color:var(--p1);transform:translateY(-2px)}
+.rc .s{flex:none;width:58px;height:58px;border-radius:11px;background:var(--p1-w);
+  border:1px solid #cfe4e0;display:grid;place-items:center;font:600 26px/1 var(--mono);color:var(--p1)}
+.rc b{display:block;font:600 16px/1.3 var(--sans);margin-bottom:3px}
+.rc span{font-size:13.5px;color:var(--ink-3)}
+.ftr{padding:34px 0 54px;color:var(--ink-3);font:500 13px/1.6 var(--sans);text-align:center}
+
+/* shared nav bar */
+.snav{display:flex;align-items:center;padding:20px 0;position:relative;z-index:20}
+.snav .mark{font:600 18px/1 var(--sans);display:flex;align-items:center;gap:9px}
+.snav .mark .g{width:25px;height:25px;border-radius:7px;display:grid;place-items:center;
+  font:700 13px/1 var(--serif)}
+.snav .links{margin-left:auto;display:flex;gap:22px;font:500 13.5px/1 var(--sans)}
+.snav.dk{color:#fff}
+.snav.dk .mark .g{background:var(--p1-l);color:var(--deep)}
+.snav.dk .links{color:rgba(255,255,255,.5)}
+.snav.lt .mark .g{background:var(--p1);color:#fff}
+.snav.lt .links{color:var(--ink-3)}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ============================================================
+   OPTION 1 - the equation is the page
+   the panel is a right-hand sidebar. the equation slides left
+   to make room, so the zoomed term is never covered.
+   ============================================================ */
+#o1 .stage{background:var(--deep);color:#fff;position:relative;overflow:hidden;
+  background-image:radial-gradient(ellipse 70% 50% at 50% 38%, #16403c 0%, var(--deep) 72%)}
+#o1 .intro{text-align:center;padding:26px 0 2px;position:relative;z-index:20;
+  transition:opacity .3s var(--ease)}
+#o1 .intro .k{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--p1-l);margin-bottom:13px}
+#o1 .intro h1{font:600 clamp(23px,3.1vw,33px)/1.25 var(--serif);margin:0 auto 8px;
+  max-width:20ch;letter-spacing:-.015em}
+#o1 .intro p{margin:0 auto;max-width:52ch;color:rgba(255,255,255,.55);font-size:15px}
+
+#o1 .diagram{position:relative;height:530px;margin-top:6px}
+#o1 #wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;
+  transition:opacity .3s var(--ease)}
+
+/* the equation: centred, slides left when the sidebar opens */
+#o1 .eqrow{position:absolute;left:50%;top:50%;z-index:10;
+  transform:translate(-50%,-50%);
+  display:flex;align-items:center;gap:2px;white-space:nowrap;
+  font:500 clamp(21px,3.4vw,36px)/1 var(--mono);letter-spacing:-.02em;
+  transition:transform .55s var(--ease)}
+#o1 .glue{color:rgba(255,255,255,.4);padding:0 3px}
+#o1 .term{position:relative;padding:9px 11px;border-radius:8px;cursor:pointer;
+  transition:opacity .35s var(--ease),background .25s var(--ease),box-shadow .3s var(--ease)}
+#o1 .term::after{content:'';position:absolute;left:8%;right:8%;bottom:2px;height:3px;border-radius:2px}
+#o1 .term:hover{background:rgba(255,255,255,.08)}
+#o1 .t1{color:var(--p1-l)} #o1 .t1::after{background:var(--p1-l)}
+#o1 .t2{color:#fff} #o1 .t2::after{background:linear-gradient(90deg,var(--p2-l),var(--p4-l))}
+#o1 .t3{color:var(--p3-l)} #o1 .t3::after{background:var(--p3-l)}
+
+#o1 .dual{position:absolute;top:-12px;left:50%;transform:translateX(-50%);display:flex;gap:4px}
+#o1 .dual i{width:7px;height:7px;border-radius:50%;display:block}
+#o1 .dual i:first-child{background:var(--p2-l)}
+#o1 .dual i:last-child{background:var(--p4-l)}
+
+#o1 .sraw{display:inline-flex;align-items:center}
+#o1 .sraw .lab{transition:opacity .28s var(--ease),max-width .5s var(--ease);
+  overflow:hidden;max-width:200px}
+#o1 .sraw .exp{display:inline-flex;align-items:center;gap:2px;max-width:0;opacity:0;overflow:hidden;
+  transition:max-width .55s var(--ease),opacity .4s var(--ease) .12s}
+#o1 .sraw .exp .th{color:var(--p4-l)} #o1 .sraw .exp .om{color:var(--p2-l)}
+#o1 .stage.zoom2 .sraw .lab{max-width:0;opacity:0}
+#o1 .stage.zoom2 .sraw .exp{max-width:460px;opacity:1}
+
+/* floating annotation cards */
+#o1 .card{position:absolute;width:226px;z-index:15;background:rgba(255,255,255,.06);
+  border-radius:11px;padding:0 15px 14px;border-top:3px solid;cursor:pointer;
+  transition:opacity .35s var(--ease),transform .35s var(--ease),background .25s var(--ease)}
+#o1 .card:hover{background:rgba(255,255,255,.11);transform:translateY(-2px)}
+#o1 .card .hd{display:flex;align-items:center;gap:8px;padding:12px 0 8px}
+#o1 .card .pn{font:700 9.5px/1 var(--sans);letter-spacing:.08em;padding:4px 6px;
+  border-radius:3px;color:var(--deep)}
+#o1 .card .tm{font:600 13px/1 var(--mono)}
+#o1 .card b{display:block;font:600 13px/1.3 var(--sans);margin-bottom:5px;color:#fff}
+#o1 .card p{margin:0;font:400 12.2px/1.5 var(--sans);color:rgba(255,255,255,.6)}
+#o1 .card .more{margin-top:8px;font:600 10.5px/1 var(--sans);color:rgba(255,255,255,.5)}
+#o1 .c1{border-color:var(--p1-l);left:0;top:4%}
+#o1 .c1 .pn{background:var(--p1-l)} #o1 .c1 .tm{color:var(--p1-l)}
+#o1 .c3{border-color:var(--p3-l);right:0;top:4%}
+#o1 .c3 .pn{background:var(--p3-l)} #o1 .c3 .tm{color:var(--p3-l)}
+#o1 .c2{border-color:var(--p2-l);left:4%;bottom:7%}
+#o1 .c2 .pn{background:var(--p2-l)} #o1 .c2 .tm{color:var(--p2-l)}
+#o1 .c4{border-color:var(--p4-l);right:4%;bottom:7%}
+#o1 .c4 .pn{background:var(--p4-l)} #o1 .c4 .tm{color:var(--p4-l)}
+
+#o1 .hint{position:absolute;left:50%;bottom:1%;transform:translateX(-50%);z-index:15;
+  font:500 12.5px/1 var(--sans);color:rgba(255,255,255,.4);
+  transition:opacity .3s var(--ease);white-space:nowrap}
+
+/* ---- focus: equation slides left, sidebar slides in from the right ---- */
+#o1 .stage.foc .term{opacity:.18}
+#o1 .stage.foc .term.act{opacity:1;background:rgba(255,255,255,.1);
+  box-shadow:0 0 0 1px rgba(255,255,255,.15)}
+#o1 .stage.foc .card,
+#o1 .stage.foc .hint,
+#o1 .stage.foc .intro{opacity:0;pointer-events:none}
+#o1 .stage.foc #wires{opacity:0}
+#o1 .stage.foc .eqrow{transform:translate(calc(-50% - 212px),-50%) scale(1.03)}
+#o1 .stage.foc.zoom2 .eqrow{transform:translate(calc(-50% - 196px),-50%) scale(.95)}
+
+#o1 .panel{position:absolute;top:0;right:0;bottom:0;width:400px;z-index:30;
+  background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.15);
+  border-radius:14px;padding:24px 24px 26px;overflow-y:auto;
+  transform:translateX(114%);opacity:0;pointer-events:none;
+  transition:transform .5s var(--ease),opacity .3s var(--ease)}
+#o1 .panel.on{transform:none;opacity:1;pointer-events:auto}
+#o1 .panel::-webkit-scrollbar{width:6px}
+#o1 .panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:3px}
+#o1 .panel .ptop{display:flex;align-items:center;gap:7px;margin-bottom:12px;
+  flex-wrap:wrap;padding-right:32px}
+#o1 .panel .bdg{font:700 9.5px/1 var(--sans);letter-spacing:.09em;padding:5px 7px;
+  border-radius:4px;color:var(--deep)}
+#o1 .panel h3{font:600 17px/1.32 var(--sans);margin:7px 0 0;color:#fff;width:100%}
+#o1 .panel .bd{font:400 13.6px/1.62 var(--sans);color:rgba(255,255,255,.72)}
+#o1 .panel .bd em{color:#fff;font-style:normal;font-weight:600}
+#o1 .cls{position:absolute;top:16px;right:16px;width:27px;height:27px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.22);background:rgba(11,36,34,.55);color:rgba(255,255,255,.65);
+  cursor:pointer;font:400 15px/1 var(--sans);z-index:2}
+#o1 .cls:hover{background:rgba(255,255,255,.15);color:#fff}
+#o1 .checks{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+#o1 .chk{background:rgba(255,255,255,.06);border-radius:9px;padding:11px 12px;
+  border-left:3px solid;display:flex;gap:9px;align-items:flex-start}
+#o1 .chk.k2{border-color:var(--p2-l)} #o1 .chk.k4{border-color:var(--p4-l)}
+#o1 .chk .ck{flex:none;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;
+  font:700 9px/1 var(--sans);color:var(--deep);margin-top:1px}
+#o1 .chk.k2 .ck{background:var(--p2-l)} #o1 .chk.k4 .ck{background:var(--p4-l)}
+#o1 .chk b{display:block;font:600 12px/1.25 var(--sans);color:#fff;margin-bottom:2px}
+#o1 .chk span{font:400 11.2px/1.45 var(--sans);color:rgba(255,255,255,.55)}
+#o1 .glead{margin-top:15px;font:600 12.5px/1.5 var(--sans);color:#fff}
+#o1 .lrow{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1);
+  display:flex;gap:7px;flex-wrap:wrap}
+#o1 .lrow span{font:600 11.5px/1 var(--sans);padding:9px 11px;border-radius:6px;
+  background:rgba(255,255,255,.09);color:rgba(255,255,255,.78);cursor:pointer}
+#o1 .lrow span:hover{background:rgba(255,255,255,.17);color:#fff}
+#o1 .esc{margin-top:11px;font:500 10.5px/1 var(--sans);color:rgba(255,255,255,.32)}
+
+@media(max-width:1060px){
+  #o1 .card{width:198px}
+  #o1 .panel{width:352px}
+  #o1 .stage.foc .eqrow{transform:translate(calc(-50% - 188px),-50%) scale(1)}
+  #o1 .stage.foc.zoom2 .eqrow{transform:translate(calc(-50% - 172px),-50%) scale(.88)}
+}
+@media(max-width:960px){
+  #o1 .diagram{height:auto;padding:14px 0 22px}
+  #o1 #wires{display:none}
+  #o1 .eqrow{position:static;transform:none !important;justify-content:center;
+    margin:12px 0 22px;flex-wrap:wrap}
+  #o1 .card{position:static;width:auto;margin-bottom:10px}
+  #o1 .stage.foc .card{display:none}
+  #o1 .panel{position:static;transform:none;width:auto;margin-top:14px;
+    opacity:1;display:none;overflow:visible}
+  #o1 .panel.on{display:block}
+  #o1 .hint{display:none}
+}
+
+/* ============================================================
+   OPTION 2 - the conventional landing page
+   ============================================================ */
+#o2 .hero{padding:66px 0 56px;border-bottom:1px solid var(--rule)}
+#o2 .hero .k{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--p1);margin-bottom:18px}
+#o2 .hero h1{font:600 clamp(34px,5vw,50px)/1.1 var(--serif);letter-spacing:-.022em;
+  margin:0 0 20px;max-width:17ch}
+#o2 .hero h1 em{font-style:normal;color:var(--p1)}
+#o2 .hero p{font-size:18.5px;line-height:1.6;color:var(--ink-2);max-width:58ch;margin:0}
+#o2 .sec{padding:58px 0;border-bottom:1px solid var(--rule)}
+#o2 .sk{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:20px}
+#o2 h2{font:600 29px/1.25 var(--serif);letter-spacing:-.012em;margin:0 0 14px}
+#o2 .sec>p{color:var(--ink-2);max-width:62ch;margin:0 0 28px;font-size:16.5px}
+#o2 .fails{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+#o2 .fail{background:#fff;padding:19px 21px}
+#o2 .fail b{display:block;font:600 14px/1.35 var(--sans);margin-bottom:5px}
+#o2 .fail span{font-size:13.5px;color:var(--ink-3);line-height:1.5}
+#o2 .prins{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+#o2 .prin{border-radius:11px;padding:19px 19px 21px;border:1px solid transparent}
+#o2 .prin .n{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;
+  font:700 11.5px/1 var(--sans);color:#fff;margin-bottom:12px}
+#o2 .prin b{display:block;font:600 14.5px/1.3 var(--sans);margin-bottom:6px}
+#o2 .prin p{margin:0;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+#o2 .prin .mp{margin-top:13px;padding-top:11px;border-top:1px dashed rgba(0,0,0,.12);
+  font:500 11.5px/1.4 var(--mono)}
+#o2 .k1{background:var(--p1-w);border-color:#cfe4e0}
+#o2 .k1 .n{background:var(--p1)} #o2 .k1 .mp{color:var(--p1)}
+#o2 .k2{background:var(--p2-w);border-color:#ecdcb9}
+#o2 .k2 .n{background:var(--p2)} #o2 .k2 .mp{color:var(--p2)}
+#o2 .k3{background:var(--p3-w);border-color:#ccd3ee}
+#o2 .k3 .n{background:var(--p3)} #o2 .k3 .mp{color:var(--p3)}
+#o2 .k4{background:var(--p4-w);border-color:#eecdd5}
+#o2 .k4 .n{background:var(--p4)} #o2 .k4 .mp{color:var(--p4)}
+#o2 .eqbox{background:var(--deep);border-radius:14px;padding:46px 30px 36px;text-align:center}
+#o2 .eqbox .cap{font:600 10.5px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);margin-bottom:30px}
+#o2 .eq{font:500 clamp(19px,3vw,30px)/1.7 var(--mono);color:#fff;white-space:nowrap;
+  overflow-x:auto;padding-bottom:6px}
+#o2 .eq .g{color:rgba(255,255,255,.42)}
+#o2 .eq .t{position:relative;padding:3px 5px;border-radius:5px}
+#o2 .eq .t::after{content:'';position:absolute;left:8%;right:8%;bottom:-5px;height:2.5px;border-radius:2px}
+#o2 .e1{color:var(--p1-l)} #o2 .e1::after{background:var(--p1-l)}
+#o2 .e2{color:var(--p2-l)} #o2 .e2::after{background:var(--p2-l)}
+#o2 .e3{color:var(--p3-l)} #o2 .e3::after{background:var(--p3-l)}
+#o2 .e4{color:var(--p4-l)} #o2 .e4::after{background:var(--p4-l)}
+#o2 .lg{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:32px;text-align:left}
+#o2 .lgc{background:rgba(255,255,255,.055);border-radius:9px;padding:14px 15px;border-left:3px solid}
+#o2 .lgc .tm{font:600 13px/1 var(--mono);margin-bottom:7px}
+#o2 .lgc p{margin:0;font:400 12.5px/1.5 var(--sans);color:rgba(255,255,255,.68)}
+#o2 .lgc a{display:inline-block;margin-top:8px;font:600 11px/1 var(--sans);color:#fff;opacity:.6;
+  text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:2px}
+#o2 .g1{border-color:var(--p1-l)} #o2 .g1 .tm{color:var(--p1-l)}
+#o2 .g4{border-color:var(--p4-l)} #o2 .g4 .tm{color:var(--p4-l)}
+#o2 .g2{border-color:var(--p2-l)} #o2 .g2 .tm{color:var(--p2-l)}
+#o2 .g3{border-color:var(--p3-l)} #o2 .g3 .tm{color:var(--p3-l)}
+#o2 .gstrip{margin-top:20px;background:rgba(172,77,99,.14);border:1px solid rgba(172,77,99,.3);
+  border-radius:9px;padding:13px 16px;text-align:left;display:flex;gap:11px;align-items:flex-start}
+#o2 .gstrip .b{flex:none;font:700 9.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;
+  background:var(--p4);color:#fff;padding:5px 7px;border-radius:4px;margin-top:1px}
+#o2 .gstrip p{margin:0;font:400 13px/1.55 var(--sans);color:rgba(255,255,255,.75)}
+@media(max-width:900px){
+  #o2 .fails,#o2 .prins,#o2 .lg{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   OPTION 3 - the derivation
+   ============================================================ */
+#o3 .stage{background:var(--deep);color:#fff;position:relative;overflow:hidden;
+  background-image:radial-gradient(ellipse 70% 55% at 50% 30%, #16403c 0%, var(--deep) 74%)}
+#o3 .top{text-align:center;padding:24px 0 4px}
+#o3 .top .k{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--p1-l);margin-bottom:14px}
+#o3 .top h1{font:600 clamp(24px,3.3vw,34px)/1.25 var(--serif);margin:0 auto 8px;
+  max-width:22ch;letter-spacing:-.015em}
+#o3 .top p{margin:0 auto;max-width:54ch;color:rgba(255,255,255,.55);font-size:15.5px}
+#o3 .rail{display:flex;justify-content:center;gap:6px;margin:24px 0 6px}
+#o3 .rail button{width:50px;height:4px;border-radius:2px;border:0;background:rgba(255,255,255,.16);
+  cursor:pointer;padding:0;transition:background .3s var(--ease)}
+#o3 .rail button.done{background:rgba(255,255,255,.4)}
+#o3 .rail button.now{background:var(--p1-l)}
+#o3 .eqzone{min-height:112px;display:grid;place-items:center;padding:20px 0 4px}
+#o3 .eq{font:500 clamp(19px,3.4vw,36px)/1.35 var(--mono);letter-spacing:-.02em;
+  white-space:nowrap;overflow-x:auto;max-width:100%;padding:6px 4px}
+#o3 .eq .g{color:rgba(255,255,255,.38)}
+#o3 .eq .u{color:#fff}
+#o3 .eq .c1{color:var(--p1-l)} #o3 .eq .c2{color:var(--p2-l)}
+#o3 .eq .c3{color:var(--p3-l)} #o3 .eq .c4{color:var(--p4-l)}
+#o3 .eq .new{display:inline-block;animation:o3pop .55s var(--ease) both}
+@keyframes o3pop{
+  from{opacity:0;transform:translateY(-9px) scale(.9);filter:blur(3px)}
+  to{opacity:1;transform:none;filter:none}
+}
+#o3 .eqlab{text-align:center;font:500 12.5px/1 var(--sans);color:rgba(255,255,255,.35);margin-top:5px;min-height:15px}
+#o3 .duo{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:28px 0 0;padding-bottom:48px}
+#o3 .pane{border-radius:12px;padding:21px 23px;border:1px solid;min-height:180px}
+#o3 .pane .hd{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+#o3 .pane .tag{font:700 9.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 8px;border-radius:4px}
+#o3 .pane h3{font:600 16px/1.35 var(--sans);margin:0}
+#o3 .pane p{margin:0;font:400 13.8px/1.6 var(--sans)}
+#o3 .pane p em{font-style:normal;font-weight:600}
+#o3 .atk{background:rgba(217,106,106,.09);border-color:rgba(217,106,106,.28)}
+#o3 .atk .tag{background:var(--break);color:#fff}
+#o3 .atk h3{color:#f2b5b5}
+#o3 .atk p{color:rgba(255,255,255,.68)} #o3 .atk p em{color:#f2b5b5}
+#o3 .fix{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14)}
+#o3 .fix .tag{color:var(--deep)}
+#o3 .fix h3{color:#fff}
+#o3 .fix p{color:rgba(255,255,255,.68)} #o3 .fix p em{color:#fff}
+#o3 .fix.f1 .tag{background:var(--p1-l)} #o3 .fix.f2 .tag{background:var(--p2-l)}
+#o3 .fix.f3 .tag{background:var(--p3-l)} #o3 .fix.f4 .tag{background:var(--p4-l)}
+#o3 .fix.f1{border-color:rgba(127,211,199,.32)} #o3 .fix.f2{border-color:rgba(232,195,122,.32)}
+#o3 .fix.f3{border-color:rgba(154,168,234,.32)} #o3 .fix.f4{border-color:rgba(230,154,172,.32)}
+#o3 .fix.fd{border-color:rgba(127,211,199,.35);background:rgba(127,211,199,.08)}
+#o3 .fix.fd .tag{background:var(--p1-l)}
+#o3 .ctl{display:flex;align-items:center;gap:12px;justify-content:center;padding:0 0 44px}
+#o3 .btn{font:600 13.5px/1 var(--sans);padding:13px 21px;border-radius:8px;cursor:pointer;
+  border:1px solid;transition:all .18s var(--ease)}
+#o3 .btn.pri{background:var(--p1-l);color:var(--deep);border-color:var(--p1-l)}
+#o3 .btn.pri:hover{transform:translateY(-1px);background:#96ddd2}
+#o3 .btn.sec{background:transparent;color:rgba(255,255,255,.65);border-color:rgba(255,255,255,.2)}
+#o3 .btn.sec:hover{color:#fff;border-color:rgba(255,255,255,.4)}
+#o3 .btn[disabled]{opacity:.3;pointer-events:none}
+#o3 .cnt{font:500 12.5px/1 var(--sans);color:rgba(255,255,255,.35)}
+@media(max-width:860px){
+  #o3 .duo{grid-template-columns:1fr}
+  #o3 .pane{min-height:0}
+}
+@media(max-width:900px){.rcs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="tabs">
+  <span class="lbl">Landing page</span>
+  <button id="t1" class="on" onclick="tab(1)">Option 1 &middot; The equation is the page</button>
+  <button id="t2" onclick="tab(2)">Option 2 &middot; Conventional</button>
+  <button id="t3" onclick="tab(3)">Option 3 &middot; The derivation</button>
+  <span class="note">Three directions for the same content. Mock-ups only.</span>
+</div>
+
+<!-- =================== OPTION 1 =================== -->
+<div class="opt on" id="o1">
+  <div class="hdr"><div class="in">
+    <b>Option 1 &middot; The equation is the page</b>
+    <span>You land on the maths. Four principles float around it on wires. Click any coloured term to zoom in; clicking S<sub>raw</sub> also unpacks it into 0.1&middot;&theta; + &omega;, where the gate lives. Best for a judge browsing alone: everything is visible before a single click.</span>
+  </div></div>
+
+  <div class="stage" id="o1stage">
+    <div class="wrap">
+      <div class="snav dk">
+        <div class="mark"><span class="g">S</span> S-index</div>
+        <div class="links"><span>Examples</span><span>The data</span><span>About</span></div>
+      </div>
+
+      <div class="intro">
+        <div class="k">A measure of shared data</div>
+        <h1>Four principles. One equation. Nothing else in it.</h1>
+        <p>Every term exists because a principle demanded it. Click any of them.</p>
+      </div>
+
+      <div class="diagram" id="o1dia">
+        <svg id="wires"></svg>
+
+        <div class="eqrow" id="o1eq">
+          <span class="glue">S<sub>norm</sub> =</span>
+          <span class="term t1" data-k="max">max( 1 ,</span>
+          <span class="glue">&nbsp;</span>
+          <span class="term t2 sraw" id="o1raw" data-k="raw">
+            <span class="dual"><i></i><i></i></span>
+            <span class="lab">S<sub>raw</sub></span>
+            <span class="exp"><span class="glue">0.1&middot;</span><span class="th">&theta;</span><span class="glue">+</span><span class="om">&omega;</span></span>
+          </span>
+          <span class="glue">&times;</span>
+          <span class="term t3" id="o1norm" data-k="norm">&mu;<sub>g</sub>/&mu;<sub>f</sub></span>
+          <span class="term t1" id="o1max" data-k="max">)</span>
+        </div>
+
+        <div class="card c1" id="o1cMax" data-k="max">
+          <div class="hd"><span class="pn">P1</span><span class="tm">max( 1 , &hellip; )</span></div>
+          <b>Sharing counts, even unused</b>
+          <p>A properly shared dataset is worth at least 1, whether or not anyone has touched it yet.</p>
+          <div class="more">Click to open &rarr;</div>
+        </div>
+        <div class="card c3" id="o1cNorm" data-k="norm">
+          <div class="hd"><span class="pn">P3</span><span class="tm">&mu;<sub>g</sub>/&mu;<sub>f</sub></span></div>
+          <b>Judged inside your field</b>
+          <p>Citations come easily in some disciplines and rarely in others. Scores are measured against their own field.</p>
+          <div class="more">Click to open &rarr;</div>
+        </div>
+        <div class="card c2" id="o1cRaw2" data-k="raw">
+          <div class="hd"><span class="pn">P2</span><span class="tm">S<sub>raw</sub></span></div>
+          <b>How and where it was shared</b>
+          <p>A dataset only earns a score if it can actually be found, cited and reused.</p>
+          <div class="more">Click to open &rarr;</div>
+        </div>
+        <div class="card c4" id="o1cRaw4" data-k="raw">
+          <div class="hd"><span class="pn">P4</span><span class="tm">S<sub>raw</sub></span></div>
+          <b>Everyone who contributed</b>
+          <p>Contributor roles and ORCID are part of qualifying. Without them there is no honest way to count a download.</p>
+          <div class="more">Click to open &rarr;</div>
+        </div>
+
+        <div class="hint">Two principles meet at S<sub>raw</sub>. Click it and the term opens up.</div>
+
+        <div class="panel" id="o1pMax">
+          <button class="cls" onclick="o1reset()">&times;</button>
+          <div class="ptop"><span class="bdg" style="background:var(--p1-l)">Principle 1</span><h3>Inherent value</h3></div>
+          <div class="bd">
+            Nearly every metric waits for someone else to act. A paper is worth nothing until cited; a dataset, nothing until downloaded. That makes the metric a measure of <em>luck and visibility</em> as much as of contribution.
+            <br><br>
+            The floor refuses that. A dataset prepared properly, documented, licensed and deposited where others can find it is <em>already a contribution</em>. It is worth at least 1, today, whether or not anyone has come looking for it.
+          </div>
+          <div class="lrow"><span onclick="o1show('raw')">See what S<sub>raw</sub> does &rarr;</span><span onclick="o1reset()">Back</span></div>
+          <div class="esc">Esc to close</div>
+        </div>
+
+        <div class="panel" id="o1pNorm">
+          <button class="cls" onclick="o1reset()">&times;</button>
+          <div class="ptop"><span class="bdg" style="background:var(--p3-l)">Principle 3</span><h3>Disciplinary norms and ethics</h3></div>
+          <div class="bd">
+            A climate dataset might be downloaded ten thousand times. A rare-disease cohort might be downloaded forty times, by exactly the forty people who can use it, and be the more valuable of the two. <em>Treating those numbers as comparable is a category error.</em>
+            <br><br>
+            So every score is divided by what is normal in its own field. Without this term, the S-index would reward your choice of field over the quality of your work.
+          </div>
+          <div class="lrow"><span onclick="o1show('max')">See the floor &rarr;</span><span onclick="o1reset()">Back</span></div>
+          <div class="esc">Esc to close</div>
+        </div>
+
+        <div class="panel" id="o1pRaw">
+          <button class="cls" onclick="o1reset()">&times;</button>
+          <div class="ptop">
+            <span class="bdg" style="background:var(--p2-l)">Principle 2</span>
+            <span class="bdg" style="background:var(--p4-l)">Principle 4</span>
+            <h3>What a dataset is worth, and why we can trust it</h3>
+          </div>
+          <div class="bd">
+            S<sub>raw</sub> opens into <em>0.1&middot;&theta; + &omega;</em>. Downloads, plus citations weighted ten times more heavily, because reuse in the literature is the stronger signal.
+            <br><br>
+            But those numbers only mean something if the dataset qualifies first. <em>A dataset with no persistent identifier cannot be cited at all</em>, so &omega; would not exist. <em>A dataset with no contributor records offers no way to exclude your own downloads</em>, so &theta; could be inflated at will.
+            <br><br>
+            The gate is not an obstacle in front of the equation. It is the reason the equation means anything.
+          </div>
+          <div class="glead">Every dataset must clear all three:</div>
+          <div class="checks">
+            <div class="chk k2"><span class="ck">&#10003;</span><div><b>Usefulness</b><span>A FAIR repository: persistent ID, metadata, a clear licence.</span></div></div>
+            <div class="chk k4"><span class="ck">&#10003;</span><div><b>Recognition</b><span>CRediT roles and ORCID for every contributor.</span></div></div>
+            <div class="chk k4"><span class="ck">&#10003;</span><div><b>Ethical responsibility</b><span>Consent, privacy and governance, documented.</span></div></div>
+          </div>
+          <div class="lrow">
+            <span onclick="o1show('norm')">Then it gets normalised &rarr;</span>
+            <span onclick="o1reset()">Back</span>
+          </div>
+          <div class="esc">Esc to close</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="tail">
+      <div class="k">See it work</div>
+      <h2>Two researchers, and every number traced</h2>
+      <p>The same equation, carrying real shared data.</p>
+      <div class="rcs">
+        <div class="rc"><div class="s">3</div><div><b>Dr. Elena Marsh</b><span>Structural biology &middot; 6 datasets</span></div></div>
+        <div class="rc"><div class="s">6</div><div><b>Dr. Amara Okonjo</b><span>Climate science &middot; 11 datasets</span></div></div>
+      </div>
+    </section>
+    <div class="ftr">An AI.Health4All project &middot; CU Anschutz &middot; University of Michigan &middot; UIC &middot; OHSU</div>
+  </div>
+</div>
+
+<!-- =================== OPTION 2 =================== -->
+<div class="opt" id="o2">
+  <div class="hdr"><div class="in">
+    <b>Option 2 &middot; Conventional</b>
+    <span>A familiar scroll: headline, the h-index's failures, the four principles, then the equation. Nothing to discover, nothing to click. The safest option, and the one a reviewer is least likely to object to. Also the one that most resembles the slide deck.</span>
+  </div></div>
+
+  <div class="wrap">
+    <div class="snav lt">
+      <div class="mark"><span class="g">S</span> S-index</div>
+      <div class="links"><span>How it works</span><span>Examples</span><span>The data</span></div>
+    </div>
+
+    <section class="hero">
+      <div class="k">A proposal for the NIH data sharing challenge</div>
+      <h1>Sharing data is a contribution. <em>Nothing measures it.</em></h1>
+      <p>The h-index counts papers. It cannot see the datasets a researcher shares, the people who reuse them, or the care taken to make them reusable at all. The S-index is built for that work, from four principles rather than from whatever metadata happened to be available.</p>
+    </section>
+
+    <section class="sec">
+      <div class="sk">Where the h-index falls short</div>
+      <h2>Six problems we designed against</h2>
+      <p>Every one is a known failure of citation counting. A data-sharing metric that inherits them has solved nothing.</p>
+      <div class="fails">
+        <div class="fail"><b>Field dependence</b><span>A 20 in oncology is not a 20 in mathematics.</span></div>
+        <div class="fail"><b>Narrow scope</b><span>Only published papers count. Data and curation do not.</span></div>
+        <div class="fail"><b>Blind to roles</b><span>The person who curated the data and the person who signed off score alike.</span></div>
+        <div class="fail"><b>Citations as value</b><span>Being cited and being useful are not the same thing.</span></div>
+        <div class="fail"><b>Gameable</b><span>Self-citation inflates it, and everyone knows it.</span></div>
+        <div class="fail"><b>No ethics gate</b><span>Rigour, consent and governance are invisible to it.</span></div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sk">The foundation</div>
+      <h2>Four principles, decided before any maths</h2>
+      <p>We began by asking what a data-sharing metric <em>must</em> reward. Only then did we build one that does. Each principle became a specific piece of the calculation, and each keeps its colour everywhere it appears.</p>
+      <div class="prins">
+        <div class="prin k1"><div class="n">1</div><b>Inherent value</b>
+          <p>FAIR-aligned sharing is a real contribution, even when nobody has reused the data yet.</p>
+          <div class="mp">&rarr; the floor</div></div>
+        <div class="prin k2"><div class="n">2</div><b>How &amp; where shared</b>
+          <p>Whether data can be reused at all depends on where it lives and how it is described.</p>
+          <div class="mp">&rarr; the gate</div></div>
+        <div class="prin k3"><div class="n">3</div><b>Norms &amp; ethics</b>
+          <p>Impact means different things in different fields, so it should be judged inside one.</p>
+          <div class="mp">&rarr; normalisation</div></div>
+        <div class="prin k4"><div class="n">4</div><b>Collaborative credit</b>
+          <p>Research is collective. Contributions across the data lifecycle should be named.</p>
+          <div class="mp">&rarr; ORCID + CRediT</div></div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sk">The metric</div>
+      <h2>Every term earns its place</h2>
+      <p>Nothing here is arbitrary. Each part exists because one of the four principles demanded it. This is the same equation you will see on a researcher's page, filled with their real numbers.</p>
+      <div class="eqbox">
+        <div class="cap">Score for a single dataset</div>
+        <div class="eq">
+          <span class="g">S<sub>norm</sub> &nbsp;=&nbsp;</span>
+          <span class="t e1">max( 1 ,</span>
+          <span class="g">&nbsp;( 0.1&middot;</span><span class="t e4">&theta;</span><span class="g"> + </span><span class="t e2">&omega;</span><span class="g"> ) &times;&nbsp;</span>
+          <span class="t e3">&mu;<sub>g</sub>/&mu;<sub>f</sub></span>
+          <span class="t e1">)</span>
+        </div>
+        <div class="lg">
+          <div class="lgc g1"><div class="tm">max( 1 , &hellip; )</div>
+            <p>The floor. A qualifying dataset is worth at least 1, even if nobody has touched it yet.</p>
+            <a href="#">Principle 1 &rarr;</a></div>
+          <div class="lgc g4"><div class="tm">&theta;</div>
+            <p>Downloads, excluding your own. You can only subtract yourself if the record says who you are.</p>
+            <a href="#">Principle 4 &rarr;</a></div>
+          <div class="lgc g2"><div class="tm">&omega;</div>
+            <p>Citations, weighted ten to one. Only possible if the dataset has a persistent identifier.</p>
+            <a href="#">Principle 2 &rarr;</a></div>
+          <div class="lgc g3"><div class="tm">&mu;<sub>g</sub>/&mu;<sub>f</sub></div>
+            <p>Field normalisation. Measured against the citation norms of its own discipline.</p>
+            <a href="#">Principle 3 &rarr;</a></div>
+        </div>
+        <div class="gstrip">
+          <span class="b">Before any of this</span>
+          <p><b style="color:#fff">The Qualifying Dataset gate.</b> A dataset scores nothing unless it is properly shared, properly attributed and ethically handled. That is Principles 2 and 4, and it happens before the equation runs.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tail" style="border-top:none">
+      <div class="k">See it work</div>
+      <h2>Two researchers, and every number traced</h2>
+      <p>The same equation, carrying real shared data.</p>
+      <div class="rcs">
+        <div class="rc"><div class="s">3</div><div><b>Dr. Elena Marsh</b><span>Structural biology &middot; 6 datasets</span></div></div>
+        <div class="rc"><div class="s">6</div><div><b>Dr. Amara Okonjo</b><span>Climate science &middot; 11 datasets</span></div></div>
+      </div>
+    </section>
+    <div class="ftr">An AI.Health4All project &middot; CU Anschutz &middot; University of Michigan &middot; UIC &middot; OHSU</div>
+  </div>
+</div>
+
+<!-- =================== OPTION 3 =================== -->
+<div class="opt" id="o3">
+  <div class="hdr"><div class="in">
+    <b>Option 3 &middot; The derivation</b>
+    <span>The equation builds itself. Start with the naive metric (just count downloads), watch it break, and let each principle enter as the fix. Every term is earned. The most persuasive when a presenter drives it; the riskiest for a judge who lands on it alone and does not click.</span>
+  </div></div>
+
+  <div class="stage">
+    <div class="wrap">
+      <div class="snav dk">
+        <div class="mark"><span class="g">S</span> S-index</div>
+        <div class="links"><span>Examples</span><span>The data</span><span>About</span></div>
+      </div>
+
+      <div class="top">
+        <div class="k">How the metric was built</div>
+        <h1>Let's try to measure data sharing. Badly, at first.</h1>
+        <p>We could have taken whatever metadata already exists and called it a metric. Here is what happens when you do.</p>
+      </div>
+
+      <div class="rail" id="o3rail"></div>
+      <div class="eqzone"><div class="eq" id="o3eq"></div></div>
+      <div class="eqlab" id="o3lab"></div>
+
+      <div class="duo">
+        <div class="pane atk">
+          <div class="hd"><span class="tag">Break it</span><h3 id="o3ah"></h3></div>
+          <p id="o3ap"></p>
+        </div>
+        <div class="pane fix" id="o3fp">
+          <div class="hd"><span class="tag" id="o3ft"></span><h3 id="o3fh"></h3></div>
+          <p id="o3fx"></p>
+        </div>
+      </div>
+
+      <div class="ctl">
+        <button class="btn sec" id="o3back" onclick="o3step(-1)">Back</button>
+        <span class="cnt" id="o3cnt"></span>
+        <button class="btn pri" id="o3fwd" onclick="o3step(1)">Break it &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="tail" style="border-top:none">
+      <div class="k">See it work</div>
+      <h2>Two researchers, and every number traced</h2>
+      <p>The equation you just derived, carrying real shared data.</p>
+      <div class="rcs">
+        <div class="rc"><div class="s">3</div><div><b>Dr. Elena Marsh</b><span>Structural biology &middot; 6 datasets</span></div></div>
+        <div class="rc"><div class="s">6</div><div><b>Dr. Amara Okonjo</b><span>Climate science &middot; 11 datasets</span></div></div>
+      </div>
+    </section>
+    <div class="ftr">An AI.Health4All project &middot; CU Anschutz &middot; University of Michigan &middot; UIC &middot; OHSU</div>
+  </div>
+</div>
+
+<script>
+/* ---------- tabs ---------- */
+function tab(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById('o'+i).classList.toggle('on', i===n);
+    document.getElementById('t'+i).classList.toggle('on', i===n);
+  });
+  window.scrollTo(0,0);
+  if(n===1) setTimeout(o1wires, 60);
+}
+
+/* ---------- option 1 ---------- */
+const o1stage = document.getElementById('o1stage');
+const o1svg   = document.getElementById('wires');
+const o1dia   = document.getElementById('o1dia');
+const O1W = [
+  ['o1cMax','o1max','var(--p1-l)'],
+  ['o1cNorm','o1norm','var(--p3-l)'],
+  ['o1cRaw2','o1raw','var(--p2-l)'],
+  ['o1cRaw4','o1raw','var(--p4-l)']
+];
+function o1wires(){
+  if(window.innerWidth < 960
+     || !document.getElementById('o1').classList.contains('on')
+     || o1stage.classList.contains('foc')){
+    o1svg.innerHTML=''; return;
+  }
+  const d = o1dia.getBoundingClientRect();
+  if(!d.width) return;
+  o1svg.setAttribute('viewBox', `0 0 ${d.width} ${d.height}`);
+  let out='';
+  O1W.forEach(([cid,tid,col])=>{
+    const c = document.getElementById(cid).getBoundingClientRect();
+    const t = document.getElementById(tid).getBoundingClientRect();
+    const cx=(c.left+c.width/2)-d.left, cy=(c.top+c.height/2)-d.top;
+    const tx=(t.left+t.width/2)-d.left, ty=(t.top+t.height/2)-d.top;
+    const mx=(cx+tx)/2;
+    out += `<path d="M ${cx} ${cy} C ${mx} ${cy}, ${mx} ${ty}, ${tx} ${ty}"
+              fill="none" stroke="${col}" stroke-width="1.4" opacity=".42" stroke-dasharray="5 5"/>
+            <circle cx="${tx}" cy="${ty}" r="3.2" fill="${col}" opacity=".85"/>`;
+  });
+  o1svg.innerHTML = out;
+}
+function o1show(k){
+  o1svg.innerHTML='';
+  o1stage.classList.add('foc');
+  o1stage.classList.toggle('zoom2', k==='raw');
+  document.querySelectorAll('#o1 .term').forEach(t=>t.classList.toggle('act', t.dataset.k===k));
+  document.querySelectorAll('#o1 .panel').forEach(p=>{ p.classList.remove('on'); p.scrollTop=0; });
+  document.getElementById({max:'o1pMax',norm:'o1pNorm',raw:'o1pRaw'}[k]).classList.add('on');
+}
+function o1reset(){
+  o1stage.classList.remove('foc','zoom2');
+  document.querySelectorAll('#o1 .term').forEach(t=>t.classList.remove('act'));
+  document.querySelectorAll('#o1 .panel').forEach(p=>p.classList.remove('on'));
+  setTimeout(o1wires,580);
+}
+document.querySelectorAll('#o1 .term, #o1 .card').forEach(el=>{
+  el.addEventListener('click', e=>{ e.stopPropagation(); o1show(el.dataset.k); });
+});
+window.addEventListener('load', o1wires);
+window.addEventListener('resize', o1wires);
+setTimeout(o1wires,140);
+
+/* ---------- option 3 ---------- */
+const O3 = [
+ { eq:`<span class="g">S =</span> <span class="u new">&theta;</span>`,
+   lab:'Attempt 1 \u00b7 count the downloads',
+   ah:'I can download my own data all night',
+   ap:'Downloads are the obvious signal, and they are already in the metadata, so most metrics stop here. But nothing stops me downloading my own dataset ten thousand times. <em>And you cannot subtract my downloads unless you know who I am.</em>',
+   ft:'P4', fc:'f4', fh:'Contributors have to be named',
+   fx:'So &theta; counts downloads <em>by people who are not contributors</em>. That requires ORCID and CRediT on every dataset, which becomes a condition of scoring at all. The fourth principle enters not as decoration, but because the metric does not work without it.',
+   nx:'Now it undercounts \u2192' },
+ { eq:`<span class="g">S =</span> <span class="c4">&theta;</span> <span class="g new">+</span> <span class="c2 new">&omega;</span>`,
+   lab:'Attempt 2 \u00b7 downloads, honestly counted, plus citations',
+   ah:'A download is not a use',
+   ap:'Someone downloading a file has not necessarily done anything with it. A citation is a far stronger claim: <em>this data changed what I could say.</em> But a dataset can only be cited if it has a persistent identifier, in a repository that will still exist in ten years.',
+   ft:'P2', fc:'f2', fh:'It has to be properly shared',
+   fx:'Citations weigh ten times more than downloads, hence <em>0.1&middot;&theta; + &omega;</em>. And &omega; is only measurable at all if the dataset is FAIR: a persistent ID, real metadata, a licence. The gate is not a hurdle in front of the equation. <em>It is what makes the equation mean anything.</em>',
+   nx:'Now it is unfair \u2192' },
+ { eq:`<span class="g">S<sub>raw</sub> = 0.1&middot;</span><span class="c4">&theta;</span><span class="g"> + </span><span class="c2">&omega;</span>`,
+   lab:'Attempt 3 \u00b7 a dataset score',
+   ah:'A climate dataset is not a rare-disease cohort',
+   ap:'Climate data is downloaded by thousands. A rare-disease cohort might be used by the forty people on earth who can use it, and be the more valuable of the two. <em>Comparing those numbers directly is not rigour, it is a category error.</em>',
+   ft:'P3', fc:'f3', fh:'Judge it inside its own field',
+   fx:'Divide by what is normal in the discipline. <em>&mu;<sub>global</sub> / &mu;<sub>field</sub></em> corrects for the fact that some fields simply cite more than others. Without it, the metric rewards your choice of field over the quality of your work.',
+   nx:'Now it punishes honesty \u2192' },
+ { eq:`<span class="g">S<sub>raw</sub> = 0.1&middot;</span><span class="c4">&theta;</span><span class="g"> + </span><span class="c2">&omega;</span> <span class="g new">&nbsp;&times;&nbsp;</span><span class="c3 new">&mu;<sub>g</sub>/&mu;<sub>f</sub></span>`,
+   lab:'Attempt 4 \u00b7 normalised for the field',
+   ah:'I did everything right and scored nothing',
+   ap:'A researcher prepares a dataset properly, documents it, licenses it, deposits it in a real repository. Nobody has downloaded it yet. Under this equation she scores approximately zero. <em>The metric is telling her that sharing was pointless.</em> For a metric designed to encourage sharing, that is a fatal answer.',
+   ft:'P1', fc:'f1', fh:'Sharing is a contribution by itself',
+   fx:'A qualifying dataset is worth at least 1, whether or not anyone has come looking for it yet. <em>max( 1 , &hellip; )</em>. This is the term that makes the S-index an argument rather than a scoreboard, and it is the one most other metrics refuse to make.',
+   nx:'See the finished metric \u2192' },
+ { eq:`<span class="g">S<sub>norm</sub> =</span> <span class="c1 new">max( 1 ,</span> <span class="g">(0.1&middot;</span><span class="c4">&theta;</span><span class="g"> + </span><span class="c2">&omega;</span><span class="g">) &times; </span><span class="c3">&mu;<sub>g</sub>/&mu;<sub>f</sub></span><span class="c1 new">)</span>`,
+   lab:'The S-index \u00b7 every term earned',
+   ah:'Nothing in it is decoration',
+   ap:'Four principles went in and four terms came out. Not one of them is there because the data happened to be lying around. Each is there because the version without it <em>broke in a way we could not accept</em>.',
+   ft:'Done', fc:'fd', fh:'And that is the whole argument',
+   fx:'Most proposals start from the metadata that exists today and build a number out of it. That is how the h-index inherited its problems, and it is how a data-sharing metric would inherit them too. <em>We started from what sharing deserves, and made the data catch up.</em>',
+   nx:null }
+];
+let o3i = 0;
+const o3rail = document.getElementById('o3rail');
+O3.forEach((_,n)=>{
+  const b=document.createElement('button');
+  b.onclick=()=>{o3i=n;o3render();};
+  o3rail.appendChild(b);
+});
+function o3render(){
+  const s=O3[o3i];
+  document.getElementById('o3eq').innerHTML=s.eq;
+  document.getElementById('o3lab').textContent=s.lab;
+  document.getElementById('o3ah').textContent=s.ah;
+  document.getElementById('o3ap').innerHTML=s.ap;
+  document.getElementById('o3ft').textContent=s.ft;
+  document.getElementById('o3fh').textContent=s.fh;
+  document.getElementById('o3fx').innerHTML=s.fx;
+  document.getElementById('o3fp').className='pane fix '+s.fc;
+  document.getElementById('o3cnt').textContent=(o3i+1)+' of '+O3.length;
+  document.getElementById('o3back').disabled = o3i===0;
+  document.getElementById('o3fwd').disabled = !s.nx;
+  document.getElementById('o3fwd').innerHTML = s.nx || 'Complete';
+  [...o3rail.children].forEach((b,n)=>{ b.className = n<o3i?'done':(n===o3i?'now':''); });
+}
+function o3step(d){ o3i=Math.max(0,Math.min(O3.length-1,o3i+d)); o3render(); }
+o3render();
+
+document.addEventListener('keydown', e=>{
+  if(document.getElementById('o3').classList.contains('on')){
+    if(e.key==='ArrowRight') o3step(1);
+    if(e.key==='ArrowLeft')  o3step(-1);
+  }
+  if(e.key==='Escape') o1reset();
+});
+</script>
+</body>
+</html>
