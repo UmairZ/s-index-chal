@@ -1,0 +1,19 @@
+:root{
+  --p1:#2e7d74; --p1-l:#7fd3c7; --p1-w:#e7f2f0;
+  --p2:#a8802f; --p2-l:#e8c37a; --p2-w:#faf1de;
+  --p3:#4a5aa8; --p3-l:#9aa8ea; --p3-w:#e9ecf8;
+  --p4:#ac4d63; --p4-l:#e69aac; --p4-w:#fae9ed;
+  --deep:#0b2422;
+  --ink:#0d1a19; --ink-2:#41544f; --ink-3:#7b8d89;
+  --rule:#dde5e3; --rule-2:#eef2f1; --paper:#fdfdfc;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Inter,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.65 var(--serif);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
