@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Nav from './Nav';
 import Tail from './Tail';
 import StaticReveal from './StaticReveal';
+import RevealA from './RevealA';
 import VariantToggle from './VariantToggle';
 import ExplainerPanel from './ExplainerPanel';
 import { parseVariant, type Variant } from '@/lib/variant';
@@ -23,8 +24,12 @@ export default function Landing() {
 
   const choose = (v: Variant) => { window.location.hash = v; };
 
-  // Task 6 replaces the 'a' branch with <RevealA/>, Task 7 the 'b' branch with <RevealB/>.
-  const body = <StaticReveal onTermClick={setPanel} />;
+  // Task 7 replaces the 'b' branch with <RevealB/>.
+  const body = staticMode
+    ? <StaticReveal onTermClick={setPanel} />
+    : variant === 'a'
+      ? <RevealA onTermClick={setPanel} />
+      : <StaticReveal onTermClick={setPanel} />; // Task 7 swaps in <RevealB/>
 
   return (
     <main>

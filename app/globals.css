@@ -130,3 +130,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .sr-eq .eq{white-space:normal}
 .sr-note{margin:18px auto 0;max-width:44ch;font:400 13.5px/1.5 var(--sans);
   color:rgba(255,255,255,.45)}
+
+/* ---------- variant A: flying assembly ---------- */
+.revealA{height:320vh}
+.ra-stage{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:flex-start}
+.ra-stage>.wrap{width:100%;padding-top:2vh}
+.ra-cards{margin:4vh 0 0;position:relative;z-index:2;pointer-events:none}
+.ra-card{will-change:transform,opacity}
+.ra-eq{position:absolute;left:0;right:0;top:62vh;text-align:center;z-index:1}
+.ra-eq .term{opacity:0}
+.ra-eq .g{opacity:0}
+.ra-after{margin:20px auto 0;max-width:44ch;font:400 13.5px/1.5 var(--sans);
+  color:rgba(255,255,255,.45);opacity:0}
+.ra-hint{position:absolute;left:50%;bottom:4vh;transform:translateX(-50%);
+  font:500 12.5px/1 var(--sans);color:rgba(255,255,255,.4)}
