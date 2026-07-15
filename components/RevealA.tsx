@@ -39,7 +39,10 @@ export default function RevealA({ onTermClick }: { onTermClick: (k: TermKey) => 
       const k = seg(v, START + i * STAGGER, SPAN);
       el.style.transform = `translate(${k * d.dx}px, ${k * d.dy}px) scale(${1 - (1 - d.s) * k})`;
       el.style.opacity = String(1 - seg(k, 0.85, 0.15)); // card fades as it lands
-      term.style.opacity = String(seg(k, 0.8, 0.2));     // term fades in underneath
+      // fade ALL buttons for this term ('max' renders twice: opening + closing paren);
+      // termEls keeps only the first, which is correct for measurement but not opacity
+      eqRef.current?.querySelectorAll<HTMLElement>(`.term[data-term="${CARD_TERM[p.key]}"]`)
+        .forEach(t => { t.style.opacity = String(seg(k, 0.8, 0.2)); }); // term fades in underneath
     });
     if (eqRef.current) {
       eqRef.current.querySelectorAll<HTMLElement>('.g').forEach(g => {
