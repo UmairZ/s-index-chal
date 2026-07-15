@@ -1,10 +1,37 @@
 'use client';
-import { useState } from 'react';
-import { motion } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'motion/react';
 import HeroIntro from './HeroIntro';
 import PrincipleCard from './PrincipleCard';
 import Equation from './Equation';
-import { PRINCIPLES, CARD_TERM, type PrincipleKey, type TermKey } from '@/lib/content';
+import { PRINCIPLES, CARD_TERM, type Principle, type PrincipleKey, type TermKey } from '@/lib/content';
+
+function RailItem({ p, i, active, onActive }: {
+  p: Principle; i: number; active: boolean; onActive: (k: PrincipleKey) => void;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  // always-on (once:false) tracking so the active highlight follows scroll in
+  // both directions; kept separate from the entrance animation below.
+  const inView = useInView(ref, { margin: '-42% 0px -42% 0px' });
+
+  useEffect(() => {
+    if (inView) onActive(p.key);
+  }, [inView, p.key, onActive]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`rb-item${active ? ' on' : ''}`}
+      initial={{ opacity: 0, x: -28 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.45, delay: i * 0.04 }}
+      viewport={{ once: true, margin: '-42% 0px -42% 0px' }}
+    >
+      <PrincipleCard p={p} />
+      <p className="rb-note">{p.note}</p>
+    </motion.div>
+  );
+}
 
 export default function RevealB({ onTermClick }: { onTermClick: (k: TermKey) => void }) {
   const [active, setActive] = useState<PrincipleKey | null>(null);
@@ -21,18 +48,7 @@ export default function RevealB({ onTermClick }: { onTermClick: (k: TermKey) => 
         <div className="rb-cols">
           <div className="rb-rail">
             {PRINCIPLES.map((p, i) => (
-              <motion.div
-                key={p.key}
-                className={`rb-item${active === p.key ? ' on' : ''}`}
-                initial={{ opacity: 0, x: -28 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.45, delay: i * 0.04 }}
-                viewport={{ once: true, margin: '-42% 0px -42% 0px' }}
-                onViewportEnter={() => setActive(p.key)}
-              >
-                <PrincipleCard p={p} />
-                <p className="rb-note">{p.note}</p>
-              </motion.div>
+              <RailItem key={p.key} p={p} i={i} active={active === p.key} onActive={setActive} />
             ))}
           </div>
           <div className="rb-eqcol">

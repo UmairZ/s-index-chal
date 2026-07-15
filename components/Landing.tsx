@@ -38,7 +38,7 @@ export default function Landing() {
         {body}
       </div>
       <Tail />
-      <VariantToggle variant={variant} onChange={choose} />
+      {!staticMode && <VariantToggle variant={variant} onChange={choose} />}
       <ExplainerPanel term={panel} onClose={() => setPanel(null)} onJump={setPanel} />
     </main>
   );

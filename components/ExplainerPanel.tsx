@@ -25,7 +25,7 @@ export default function ExplainerPanel({ term, onClose, onJump }: Props) {
   return (
     <div className="panelwrap">
       <div className="panelbg" onClick={onClose} aria-hidden="true" />
-      <aside className={`panel pk-${p.principle}`} role="dialog" aria-modal="true"
+      <aside className="panel" role="dialog" aria-modal="true"
         aria-label={p.title} tabIndex={-1} ref={ref}>
         <button className="cls" onClick={onClose} aria-label="Close">×</button>
         <div className="ptop">

@@ -70,7 +70,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 /* ---------- equation ---------- */
 .eq{font:500 clamp(20px,3vw,32px)/1.6 var(--mono);color:#fff;letter-spacing:-.02em;
   text-align:center;white-space:nowrap}
-.eq .g{color:rgba(255,255,255,.42)}
+.eq .g{color:rgba(255,255,255,.55)}
 .term{position:relative;padding:4px 6px;border-radius:6px;
   transition:background .2s var(--ease),box-shadow .2s var(--ease)}
 .term::after{content:'';position:absolute;left:8%;right:8%;bottom:-2px;height:2.5px;border-radius:2px}
@@ -135,6 +135,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .revealA{height:320vh}
 .ra-stage{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:flex-start}
 .ra-stage>.wrap{width:100%;padding-top:2vh}
+/* pointer-events:none — safe only while PrincipleCard has no interactive children */
 .ra-cards{margin:4vh 0 0;position:relative;z-index:2;pointer-events:none}
 .ra-card{will-change:transform,opacity}
 .ra-eq{position:absolute;left:0;right:0;top:62vh;text-align:center;z-index:1}
