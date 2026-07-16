@@ -76,8 +76,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .prins{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .prin{position:relative;overflow:hidden;border-radius:11px;padding:19px 19px 21px;
   border:1px solid transparent;color:var(--ink)}
-.prin .wm{position:absolute;right:4px;top:-20px;font:700 96px/1 var(--serif);
-  opacity:.09;pointer-events:none;user-select:none}
 .prin .n{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;
   font:700 11.5px/1 var(--sans);color:#fff;margin-bottom:12px}
 .prin b{display:block;font:600 14.5px/1.3 var(--sans);margin-bottom:6px}
@@ -85,10 +83,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .prin .nt{margin-top:8px;font:400 12.2px/1.5 var(--sans);color:var(--ink-3)}
 .prin .mp{margin-top:13px;padding-top:11px;border-top:1px dashed rgba(0,0,0,.12);
   font:500 11.5px/1.4 var(--mono)}
-.prin.p1{background:var(--p1-w)} .prin.p1 .n{background:var(--p1)} .prin.p1 .mp{color:var(--p1)} .prin.p1 .wm{color:var(--p1)}
-.prin.p2{background:var(--p2-w)} .prin.p2 .n{background:var(--p2)} .prin.p2 .mp{color:var(--p2)} .prin.p2 .wm{color:var(--p2)}
-.prin.p3{background:var(--p3-w)} .prin.p3 .n{background:var(--p3)} .prin.p3 .mp{color:var(--p3)} .prin.p3 .wm{color:var(--p3)}
-.prin.p4{background:var(--p4-w)} .prin.p4 .n{background:var(--p4)} .prin.p4 .mp{color:var(--p4)} .prin.p4 .wm{color:var(--p4)}
+.prin.p1{background:var(--p1-w)} .prin.p1 .n{background:var(--p1)} .prin.p1 .mp{color:var(--p1)}
+.prin.p2{background:var(--p2-w)} .prin.p2 .n{background:var(--p2)} .prin.p2 .mp{color:var(--p2)}
+.prin.p3{background:var(--p3-w)} .prin.p3 .n{background:var(--p3)} .prin.p3 .mp{color:var(--p3)}
+.prin.p4{background:var(--p4-w)} .prin.p4 .n{background:var(--p4)} .prin.p4 .mp{color:var(--p4)}
 @media(max-width:959px){.prins{grid-template-columns:1fr}}
 
 /* ---------- tail + footer ---------- */
@@ -172,13 +170,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   box-shadow:0 24px 70px rgba(13,26,25,.18)}
 .as-head{position:absolute;left:0;right:0;top:7%;z-index:30;padding:0 24px;pointer-events:none}
 .as-head .intro{padding:0}
-.ghost{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:1;
-  font:500 clamp(40px,6.4vw,86px)/1 var(--mono);letter-spacing:-.04em;white-space:nowrap;
-  color:#fff;opacity:.07;pointer-events:none;user-select:none}
 .wires{position:absolute;inset:0;width:100%;height:100%;z-index:15;pointer-events:none;opacity:0}
 .astage.foc .wires{opacity:0!important}
 .acard{position:absolute;left:0;top:0;width:290px;z-index:25;transform-origin:0 0;
   will-change:transform;cursor:default;opacity:0}
+/* uniform card size on the stage; the → line pins to the bottom */
+.acard .prin{height:232px;display:flex;flex-direction:column}
+.acard .prin .mp{margin-top:auto}
 .astage.settled .acard{cursor:pointer}
 .as-eq{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;
   opacity:0;text-align:center}

@@ -51,7 +51,10 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
     const startS = clamp((W - 96 - 3 * gap) / (4 * CARD_W), 0.55, 1);
     const sw = CARD_W * startS;
     const rowW = 4 * sw + 3 * gap;
-    const x0 = (W - rowW) / 2, y0 = H * 0.42;
+    // row sits below the heading block, never overlapping it
+    const head = el.querySelector<HTMLElement>('.as-head');
+    const headBottom = head ? head.offsetTop + head.offsetHeight : H * 0.35;
+    const x0 = (W - rowW) / 2, y0 = Math.max(H * 0.42, headBottom + 28);
     // settled corners around the centred equation
     const endS = 0.6;
     const ew = CARD_W * endS;
@@ -108,7 +111,6 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
       if (n) n.style.opacity = String(v);
     };
     set('.as-head', 1 - smooth(0, 0.45, p));
-    set('.ghost', 0.07 * (1 - smooth(0.05, 0.5, p)));
     set('.as-hint', 1 - smooth(0, 0.2, p));
     set('.as-prompt', smooth(0.92, 1, p));
     const eqA = smooth(0.35, 0.8, p);
@@ -157,9 +159,6 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
       className={`astage${panelOpen ? ' foc' : ''}${assembled ? ' settled' : ''}`}
     >
       <div className="as-head"><HeroIntro /></div>
-      <div className="ghost" aria-hidden="true">
-        S<sub>norm</sub> = max( 1, (0.1·θ + ω) × μ<sub>g</sub>/μ<sub>f</sub> )
-      </div>
       <svg className="wires" ref={svgRef} aria-hidden="true" />
       {PRINCIPLES.map((p, i) => (
         <div
