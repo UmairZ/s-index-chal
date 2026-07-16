@@ -113,7 +113,7 @@ export default function Landing() {
       <Nav />
       <TimelineNav active={section} onSelect={go} />
       <div className={`scenes sec-${section}`}>
-        <div className="scene scene-stage" inert={section === 2 || undefined}>
+        <div className="scene scene-stage" inert={section === 2 || panel !== null || undefined}>
           <AssemblyStage
             assembled={section >= 1}
             panelOpen={panel !== null}
@@ -121,7 +121,7 @@ export default function Landing() {
             onTermClick={k => { if (sectionRef.current === 1) setPanel(k); }}
           />
         </div>
-        <div className="scene scene-tail" inert={section !== 2 || undefined}>
+        <div className="scene scene-tail" inert={section !== 2 || panel !== null || undefined}>
           <div className="wrap"><Tail /></div>
         </div>
       </div>
