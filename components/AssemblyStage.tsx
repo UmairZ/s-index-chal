@@ -55,8 +55,9 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
     const head = el.querySelector<HTMLElement>('.as-head');
     const headBottom = head ? head.offsetTop + head.offsetHeight : H * 0.35;
     const x0 = (W - rowW) / 2, y0 = Math.max(H * 0.42, headBottom + 28);
-    // settled corners around the centred equation
-    const endS = 0.6;
+    // settled corners around the centred equation; cards are compact there
+    // (body text collapsed via .settled CSS), so they shrink less and stay readable
+    const endS = 0.82;
     const ew = CARD_W * endS;
     const cx = W / 2, cy = H / 2;
     const off = Math.min(265, cx - ew - 24);
@@ -173,7 +174,7 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
       <div className="as-eq">
         <Equation interactive={assembled} onTermClick={onTermClick} highlight={activeTerm} />
         <div className="as-prompt">
-          Every principle is now part of one equation. <b>Click any term to go deeper.</b>
+          Every principle is now part of one equation. <b>Click any term or card to go deeper.</b>
         </div>
       </div>
       <div className="as-hint" aria-hidden="true">Scroll<span className="chev" /></div>
