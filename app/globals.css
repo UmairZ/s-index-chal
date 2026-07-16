@@ -18,9 +18,21 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .wrap{max-width:1080px;margin:0 auto;padding:0 26px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
-/* ---------- dark stage + nav ---------- */
-.stage{background:var(--deep);color:#fff;position:relative;overflow:clip;
-  background-image:radial-gradient(ellipse 70% 50% at 50% 30%, #16403c 0%, var(--deep) 72%)}
+/* ---------- snap scenes (desktop interactive mode) ---------- */
+.scenes{position:fixed;inset:0;overflow:hidden}
+.scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  transition:transform 1s var(--ease)}
+.scene-tail{transform:translateY(104%);flex-direction:column}
+.scenes.sec-2 .scene-stage{transform:translateY(-104%)}
+.scenes.sec-2 .scene-tail{transform:none}
+.scene-tail .wrap{width:100%}
+.scene-tail .ftr{padding:26px 0 8px}
+
+/* ---------- static flow (mobile + reduced motion) ---------- */
+.static-flow{padding-top:84px}
+.astatic{background:var(--deep);color:#fff;border-radius:20px;padding:34px 22px 40px;
+  background-image:radial-gradient(ellipse 68% 52% at 50% 42%, #16403c 0%, var(--deep) 74%)}
+.astatic .prins{margin-top:18px}
 
 /* ---------- floating glass nav ---------- */
 .gnav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:150;
@@ -144,52 +156,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .panel .lrow button:hover{background:rgba(255,255,255,.17);color:#fff}
 .panel .esc{margin-top:11px;font:500 10.5px/1 var(--sans);color:rgba(255,255,255,.32)}
 
-/* ---------- variant toggle (team review tool — delete after decision) ---------- */
-.vtoggle{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;gap:4px;
-  background:rgba(8,17,15,.92);border:1px solid rgba(255,255,255,.18);border-radius:9px;padding:4px}
-.vtoggle button{font:600 12px/1 var(--sans);color:rgba(255,255,255,.6);
-  padding:8px 12px;border-radius:6px}
-.vtoggle button.on{background:#fff;color:#08110f}
-
 /* ---------- static reveal ---------- */
 .sr-eq{text-align:center;padding:10px 0 64px}
 .sr-eq .cap{font:600 10.5px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;
   color:rgba(255,255,255,.4);margin-bottom:22px}
 .sr-eq .eq{white-space:normal}
 .sr-note{margin:18px auto 0;max-width:44ch;font:400 13.5px/1.5 var(--sans);
-  color:rgba(255,255,255,.45)}
-
-/* ---------- variant A: flying assembly ---------- */
-.revealA{height:320vh}
-.ra-stage{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:flex-start}
-.ra-stage>.wrap{width:100%;padding-top:2vh}
-/* pointer-events:none — safe only while PrincipleCard has no interactive children */
-.ra-cards{margin:4vh 0 0;position:relative;z-index:2;pointer-events:none}
-.ra-card{will-change:transform,opacity}
-.ra-eq{position:absolute;left:0;right:0;top:62vh;text-align:center;z-index:1}
-.ra-eq .term{opacity:0}
-.ra-eq .g{opacity:0}
-.ra-after{margin:20px auto 0;max-width:44ch;font:400 13.5px/1.5 var(--sans);
-  color:rgba(255,255,255,.45);opacity:0}
-.ra-hint{position:absolute;left:50%;bottom:4vh;transform:translateX(-50%);
-  font:500 12.5px/1 var(--sans);color:rgba(255,255,255,.4)}
-
-/* ---------- variant B: left-rail dock ---------- */
-.rb-hint{text-align:center;padding:26px 0 8px;font:500 12.5px/1 var(--sans);
-  color:rgba(255,255,255,.4)}
-.rb-cols{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:48px;
-  padding:10vh 0 16vh;align-items:start}
-.rb-rail{display:flex;flex-direction:column;gap:45vh;padding:20vh 0}
-.rb-item{transition:transform .3s var(--ease),filter .3s var(--ease);filter:saturate(.55) brightness(.82)}
-.rb-item.on{transform:scale(1.03);filter:none}
-.rb-note{margin:10px 4px 0;font:500 12px/1.5 var(--mono);color:rgba(255,255,255,.5)}
-.rb-item.on .rb-note{color:rgba(255,255,255,.8)}
-.rb-eqcol{position:relative;height:100%}
-.rb-sticky{position:sticky;top:26vh;text-align:center}
-.rb-sticky .cap{font:600 10.5px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;
-  color:rgba(255,255,255,.4);margin-bottom:20px}
-.rb-sticky .eq{white-space:normal}
-.rb-cap{margin:18px auto 0;max-width:36ch;font:400 13px/1.5 var(--sans);
   color:rgba(255,255,255,.45)}
 
 /* ---------- assembly stage (contained dark panel) ---------- */
