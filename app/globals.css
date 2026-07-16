@@ -21,12 +21,36 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 /* ---------- dark stage + nav ---------- */
 .stage{background:var(--deep);color:#fff;position:relative;overflow:clip;
   background-image:radial-gradient(ellipse 70% 50% at 50% 30%, #16403c 0%, var(--deep) 72%)}
-.snav{display:flex;align-items:center;padding:20px 0;color:#fff}
-.snav .mark{font:600 18px/1 var(--sans);display:flex;align-items:center;gap:9px}
-.snav .mark .g{width:25px;height:25px;border-radius:7px;display:grid;place-items:center;
-  font:700 13px/1 var(--serif);background:var(--p1-l);color:var(--deep)}
-.snav .links{margin-left:auto;display:flex;gap:22px;font:500 13.5px/1 var(--sans);
-  color:rgba(255,255,255,.5)}
+
+/* ---------- floating glass nav ---------- */
+.gnav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:150;
+  width:min(1080px,calc(100vw - 36px));display:flex;align-items:center;
+  padding:11px 20px;border-radius:14px;color:var(--ink);
+  background:rgba(253,253,252,.72);
+  -webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);
+  border:1px solid rgba(13,26,25,.08);box-shadow:0 10px 30px rgba(13,26,25,.08)}
+.gnav .mark{font:600 17px/1 var(--sans);display:flex;align-items:center;gap:9px}
+.gnav .mark .g{width:25px;height:25px;border-radius:7px;display:grid;place-items:center;
+  font:700 13px/1 var(--serif);background:var(--p1);color:#fff}
+.gnav .links{margin-left:auto;display:flex;gap:22px;font:500 13.5px/1 var(--sans);color:var(--ink-3)}
+
+/* ---------- left timeline nav ---------- */
+.tnav{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:120;
+  display:flex;flex-direction:column;gap:26px}
+.tnav::before{content:'';position:absolute;left:5px;top:12px;bottom:12px;width:1px;
+  background:rgba(13,26,25,.15)}
+.tnav button{position:relative;display:flex;align-items:center;gap:10px;
+  font:600 11px/1 var(--sans);letter-spacing:.06em;color:var(--ink-3)}
+.tnav .dot{flex:none;width:11px;height:11px;border-radius:50%;background:var(--paper);
+  border:2px solid var(--ink-3);transition:background .3s var(--ease),border-color .3s var(--ease)}
+.tnav .lbl{opacity:0;transform:translateX(-4px);white-space:nowrap;
+  background:rgba(253,253,252,.9);padding:5px 8px;border-radius:6px;
+  box-shadow:0 2px 8px rgba(13,26,25,.1);
+  transition:opacity .25s var(--ease),transform .25s var(--ease)}
+.tnav button:hover .lbl,.tnav button:focus-visible .lbl,.tnav button.on .lbl{opacity:1;transform:none}
+.tnav button.on{color:var(--ink)}
+.tnav button.on .dot{background:var(--p1);border-color:var(--p1)}
+@media(max-width:959px){.tnav{display:none}}
 
 /* ---------- hero intro ---------- */
 .intro{text-align:center;padding:44px 0 10px}
