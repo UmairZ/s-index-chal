@@ -5,10 +5,9 @@ interface Props {
   interactive?: boolean;
   onTermClick?: (k: TermKey) => void;
   highlight?: TermKey | null;
-  termRef?: (k: TermKey, el: HTMLButtonElement | null) => void;
 }
 
-export default function Equation({ interactive = true, onTermClick, highlight, termRef }: Props) {
+export default function Equation({ interactive = true, onTermClick, highlight }: Props) {
   const term = (k: TermKey, cls: string, label: string, children: React.ReactNode) => (
     <button
       type="button"
@@ -17,7 +16,6 @@ export default function Equation({ interactive = true, onTermClick, highlight, t
       aria-label={label}
       tabIndex={interactive ? 0 : -1}
       onClick={() => interactive && onTermClick?.(k)}
-      ref={el => termRef?.(k, el)}
     >
       {children}
     </button>

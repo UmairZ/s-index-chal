@@ -37,6 +37,7 @@ export default function Landing() {
     if (staticMode) return;
     document.body.style.overflow = 'hidden';
     let acc = 0;
+    let consumed = false;
     let accTimer = 0;
     const step = (dir: 1 | -1) => {
       if (panelRef.current !== null || Date.now() < busyUntil.current) return;
@@ -46,11 +47,14 @@ export default function Landing() {
       if (panelRef.current !== null) return; // wheel scrolls the panel, not sections
       acc += e.deltaY;
       window.clearTimeout(accTimer);
-      accTimer = window.setTimeout(() => { acc = 0; }, 180);
+      accTimer = window.setTimeout(() => { acc = 0; consumed = false; }, 180);
       if (Math.abs(acc) > 60) {
         const dir: 1 | -1 = acc > 0 ? 1 : -1;
         acc = 0;
-        step(dir);
+        if (!consumed) {
+          step(dir);
+          consumed = true;
+        }
       }
     };
     const onKey = (e: KeyboardEvent) => {
@@ -111,13 +115,14 @@ export default function Landing() {
   return (
     <main>
       <Nav />
-      <TimelineNav active={section} onSelect={go} />
+      <div inert={panel !== null || undefined}><TimelineNav active={section} onSelect={go} /></div>
       <div className={`scenes sec-${section}`}>
         <div className="scene scene-stage" inert={section === 2 || panel !== null || undefined}>
           <AssemblyStage
             assembled={section >= 1}
             panelOpen={panel !== null}
             activeTerm={panel}
+            // defensive: also blocks clicks when inert is unsupported (pre-2023 browsers)
             onTermClick={k => { if (sectionRef.current === 1) setPanel(k); }}
           />
         </div>

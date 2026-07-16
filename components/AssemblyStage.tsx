@@ -1,9 +1,9 @@
 'use client';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import HeroIntro from './HeroIntro';
 import PrincipleCard from './PrincipleCard';
 import Equation from './Equation';
-import { PRINCIPLES, CARD_TERM, type TermKey } from '@/lib/content';
+import { PRINCIPLES, CARD_TERM, type TermKey, type PrincipleKey } from '@/lib/content';
 
 interface Props {
   assembled: boolean;
@@ -24,7 +24,7 @@ const easeInOut = (t: number) =>
 const DUR = 1000;   // ms for a full 0↔1 assembly
 const CARD_W = 290; // natural card width, matches .acard CSS
 
-const WIRE_COLOR: Record<string, string> = {
+const WIRE_COLOR: Record<PrincipleKey, string> = {
   p1: 'var(--p1-l)', p2: 'var(--p2-l)', p3: 'var(--p3-l)', p4: 'var(--p4-l)',
 };
 
@@ -56,7 +56,8 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
     const endS = 0.6;
     const ew = CARD_W * endS;
     const cx = W / 2, cy = H / 2;
-    const leftX = cx - 265 - ew, rightX = cx + 265;
+    const off = Math.min(265, cx - ew - 24);
+    const leftX = cx - off - ew, rightX = cx + off;
     const upY = cy - 205, downY = cy + 35;
     geo.current = {
       startS, endS,
@@ -100,6 +101,7 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
       const y = lerp(start[i].y, end[i].y, p);
       const s = lerp(startS, endS, p);
       c.style.transform = `translate(${x}px,${y}px) scale(${s})`;
+      c.style.opacity = '1';
     });
     const set = (sel: string, v: number) => {
       const n = el.querySelector<HTMLElement>(sel);
@@ -123,7 +125,7 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
   }, [drawWires]);
 
   // layout on mount and resize (declared before the tween effect so mount order is layout → apply)
-  useEffect(() => {
+  useLayoutEffect(() => {
     layout();
     apply(t.current);
     const onResize = () => { layout(); apply(t.current); };
