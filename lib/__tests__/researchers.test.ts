@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { RESEARCHER_LIST, sNorm, sIndex, type Researcher } from '../researchers';
+import { RESEARCHERS } from '../content';
 
 const rows = (r: Researcher) =>
   r.datasets.map(d => ({ sNorm: sNorm(d.theta, d.omega, d.normFactor), qualifies: d.qualifies }));
@@ -69,5 +70,17 @@ describe('researcher fixtures', () => {
     for (const r of RESEARCHER_LIST)
       for (const d of r.datasets)
         expect(d.qualifies ? d.failedGate === null : typeof d.failedGate === 'string').toBe(true);
+  });
+});
+
+describe('landing cards', () => {
+  it('match the researcher fixtures by slug and computed S-index', () => {
+    expect(RESEARCHERS).toHaveLength(2);
+    for (const card of RESEARCHERS) {
+      const r = RESEARCHER_LIST.find(x => x.slug === card.slug);
+      expect(r, `no fixture for slug ${card.slug}`).toBeDefined();
+      expect(card.name).toBe(r!.name);
+      expect(card.score).toBe(sIndex(rows(r!)));
+    }
   });
 });

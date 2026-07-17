@@ -106,8 +106,14 @@ export const HERO = {
 };
 
 export const RESEARCHERS = [
-  { score: 3, name: 'Dr. Elena Marsh', meta: 'Structural biology · 6 datasets' },
-  { score: 6, name: 'Dr. Amara Okonjo', meta: 'Climate science · 11 datasets' },
+  {
+    score: 3, slug: 'david-bissig', name: 'David Bissig',
+    meta: 'Neuroscience · 5 shared datasets',
+  },
+  {
+    score: 1, slug: 'jeffrey-kaye', name: 'Jeffrey Kaye',
+    meta: 'Neurology · 1 linked dataset — and that’s the finding',
+  },
 ];
 
 export const FOOTER =

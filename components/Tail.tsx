@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { RESEARCHERS, FOOTER } from '@/lib/content';
 
 export default function Tail() {
@@ -6,13 +7,17 @@ export default function Tail() {
       <section className="tail wrap">
         <div className="k">See it work</div>
         <h2>Two researchers, and every number traced</h2>
-        <p>The same equation, carrying real shared data. Researcher pages are coming next.</p>
+        <p>
+          The same equation, carrying real shared data — open a researcher and drive
+          the numbers yourself.
+        </p>
         <div className="rcs">
           {RESEARCHERS.map(r => (
-            <div className="rc" key={r.name}>
+            <Link className="rc" key={r.slug} href={`/researchers/${r.slug}`}>
               <div className="s" aria-hidden="true">{r.score}</div>
               <div><b>{r.name}</b><span>{r.meta}</span></div>
-            </div>
+              <span className="go" aria-hidden="true">→</span>
+            </Link>
           ))}
         </div>
       </section>

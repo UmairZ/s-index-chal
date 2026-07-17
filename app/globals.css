@@ -342,3 +342,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .agg-note{margin-top:14px;font:400 11.5px/1.4 var(--sans);color:var(--ink-3)}
 @media (max-width:640px){.agg-row .t{width:110px}}
 @media (prefers-reduced-motion: reduce){.fill{transition:none}}
+
+/* ---- researcher cards are links now ---- */
+a.rc{text-decoration:none;color:inherit;
+  transition:border-color .2s var(--ease),box-shadow .2s var(--ease),
+    transform .2s var(--ease)}
+a.rc:hover{border-color:var(--p1);box-shadow:0 10px 26px rgba(11,36,34,.08);
+  transform:translateY(-2px)}
+.rc .go{margin-left:auto;color:var(--p1);font:600 17px/1 var(--sans)}
+@media (prefers-reduced-motion: reduce){a.rc{transition:none}}
