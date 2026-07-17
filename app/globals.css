@@ -264,3 +264,59 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 @media (prefers-reduced-motion: reduce){
   .rhead,.rhead h1,.chip .val,.xlink,.reset{transition:none}
 }
+
+/* ---- workbench ---- */
+.wb{background:var(--deep);border-radius:22px;padding:24px;display:grid;
+  grid-template-columns:minmax(250px,2fr) 3fr;gap:22px;margin-top:32px;
+  box-shadow:0 24px 60px -28px rgba(11,36,34,.45)}
+.wb-list{display:flex;flex-direction:column;gap:9px;outline:none;border-radius:12px}
+.wb-list:focus-visible{box-shadow:0 0 0 2px var(--p1-l)}
+.wb-it{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  border-radius:11px;padding:12px 14px;cursor:pointer;color:#fff;
+  transition:background .15s var(--ease),border-color .15s var(--ease)}
+.wb-it:hover{background:rgba(255,255,255,.09)}
+.wb-it.on{background:rgba(255,255,255,.12);border-color:var(--p1-l)}
+.wb-it b{display:block;font:600 13.5px/1.35 var(--sans)}
+.wb-it .m{display:block;font:500 11.5px/1.4 var(--sans);
+  color:rgba(255,255,255,.5);margin-top:2px}
+.wb-it .sn{display:inline-block;margin-top:7px;font:600 12px/1 var(--mono);
+  color:var(--p1-l)}
+.wb-it .bad{display:inline-block;margin-top:7px;font:600 10.5px/1.3 var(--sans);
+  letter-spacing:.04em;text-transform:uppercase;color:#ff9d9d}
+.wb-it.dq{border-color:rgba(255,120,120,.35)}
+.wb-eq{color:#fff;min-width:0;animation:wbin .22s var(--ease)}
+@keyframes wbin{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
+.wb-ds b{font:600 15.5px/1.35 var(--sans);display:block}
+.wb-ds span{font:500 12px/1.4 var(--sans);color:rgba(255,255,255,.5)}
+.wb-line{margin:20px 0 10px;font:500 clamp(15px,1.9vw,21px)/1.9 var(--mono);
+  letter-spacing:-.01em;display:flex;flex-wrap:wrap;align-items:center;row-gap:14px}
+.wb-line .g{color:rgba(255,255,255,.55);white-space:pre}
+.wb-term{display:inline-flex;flex-direction:column;align-items:center;margin:0 2px}
+.wb-term i{font:600 9.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;
+  font-style:normal;margin-bottom:4px;opacity:.8}
+.wb-term.t4 i,.wb-num.t4{color:var(--p4-l)}
+.wb-term.t2 i,.wb-num.t2{color:var(--p2-l)}
+.wb-term.t3 i,.wb-term.t3 .wb-fix{color:var(--p3-l)}
+.wb-num{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
+  border-radius:7px;color:inherit;font:inherit;padding:1px 6px;text-align:center}
+.wb-num:focus{outline:none;border-color:#fff;background:rgba(255,255,255,.14)}
+.wb-fix{padding:1px 6px}
+.wb-path{font:500 12px/1.5 var(--sans);color:rgba(255,255,255,.5)}
+.wb-path b{color:var(--p3-l);font-weight:600}
+.wb-out{margin:16px 0 0;font:500 16px/1.5 var(--mono)}
+.wb-out b{color:var(--p1-l)}
+.wb-out .floor{color:var(--p1-l);font:500 12.5px/1 var(--sans)}
+.wb-out .agg-note{color:rgba(255,255,255,.55);font:500 12.5px/1 var(--sans)}
+.wb-gate{margin-top:14px;background:rgba(255,90,90,.12);
+  border:1px solid rgba(255,120,120,.4);border-radius:10px;padding:12px 14px;
+  font:400 13px/1.5 var(--sans);color:#ffd9d9}
+.wb-gate b{color:#ff9d9d}
+@media (max-width:959px){
+  .wb{grid-template-columns:1fr}
+  .wb-list{flex-direction:row;overflow-x:auto;padding-bottom:6px}
+  .wb-it{flex:none;width:200px}
+}
+@media (prefers-reduced-motion: reduce){
+  .wb-eq{animation:none}
+  .wb-it{transition:none}
+}

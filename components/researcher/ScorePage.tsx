@@ -1,14 +1,30 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { FOOTER } from '@/lib/content';
 import { RESEARCHER_LIST, sNorm, sIndex, type Researcher } from '@/lib/researchers';
+import Workbench from '@/components/researcher/Workbench';
 
 interface Edit { theta: number; omega: number }
 
 export default function ScorePage({ r }: { r: Researcher }) {
   const [edits, setEdits] = useState<Record<string, Edit>>({});
   const [slim, setSlim] = useState(false);
+  const [selected, setSelected] = useState(r.datasets[0].id);
+
+  const onEdit = useCallback((id: string, field: 'theta' | 'omega', value: number) => {
+    setEdits(prev => {
+      const d = r.datasets.find(x => x.id === id);
+      if (!d) return prev;
+      const cur = prev[id] ?? { theta: d.theta, omega: d.omega };
+      const next = { ...cur, [field]: value };
+      if (next.theta === d.theta && next.omega === d.omega) {
+        const { [id]: _drop, ...rest } = prev;
+        return rest; // editing back to the original value clears the edit
+      }
+      return { ...prev, [id]: next };
+    });
+  }, [r]);
 
   useEffect(() => {
     const on = () => setSlim(window.scrollY > 60);
@@ -68,7 +84,14 @@ export default function ScorePage({ r }: { r: Researcher }) {
       </header>
 
       <main className="wrap rmain">
-        {/* Task 3 mounts <Workbench/> here; Task 4 mounts <AggregationStrip/> after it */}
+        <Workbench
+          rows={rows}
+          selected={selected}
+          sValue={s}
+          onSelect={setSelected}
+          onEdit={onEdit}
+        />
+        {/* Task 4 mounts <AggregationStrip/> after Workbench */}
         <section className="story">
           <div className="k">{r.story.title}</div>
           {r.story.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
