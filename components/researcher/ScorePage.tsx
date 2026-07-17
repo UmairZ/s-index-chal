@@ -5,6 +5,7 @@ import { FOOTER } from '@/lib/content';
 import { RESEARCHER_LIST, sNorm, sIndex, type Researcher } from '@/lib/researchers';
 import Workbench from '@/components/researcher/Workbench';
 import AggregationStrip from '@/components/researcher/AggregationStrip';
+import RaiseScore from '@/components/researcher/RaiseScore';
 
 interface Edit { theta: number; omega: number }
 
@@ -93,8 +94,8 @@ export default function ScorePage({ r }: { r: Researcher }) {
           onEdit={onEdit}
         />
         <AggregationStrip rows={rows} s={s} />
-        {/* Team is deciding what narrative content goes below the workbench;
-            the story/caveats sections were removed 2026-07-16 pending that. */}
+        <RaiseScore rows={rows} s={s} note={r.raiseNote} />
+
         {hasProvisional && (
           <section className="cavs" aria-label="Data status">
             <div className="cav prov">

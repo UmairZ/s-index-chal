@@ -346,6 +346,23 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 @media (max-width:640px){.agg-row .t{width:110px}}
 @media (prefers-reduced-motion: reduce){.fill{transition:none}}
 
+/* ---- what would raise this score ---- */
+.raise{background:#fff;border:1px solid var(--rule);border-radius:16px;
+  padding:22px 24px;margin-top:16px}
+.raise .k{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--p1);margin-bottom:12px}
+.raise-lead{margin:0;color:var(--ink-2);font:400 15px/1.6 var(--sans);max-width:68ch}
+.raise-lead b{color:var(--ink)}
+.raise-list{margin:15px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.raise-list li{border:1px solid var(--rule);border-radius:11px;padding:13px 16px;
+  font:400 13.5px/1.55 var(--sans);color:var(--ink-2)}
+.raise-list li b{color:var(--ink);font-weight:600}
+.raise-list li.cand{background:var(--p1-w)}
+.raise-list li.gate{background:var(--p4-w);border-color:var(--p4-l)}
+.raise-list li.short{background:var(--p3-w)}
+.raise-note{margin:14px 0 0;font:400 13.5px/1.55 var(--sans);color:var(--ink-3);
+  max-width:68ch}
+
 /* ---- researcher cards are links now ---- */
 a.rc{text-decoration:none;color:inherit;
   transition:border-color .2s var(--ease),box-shadow .2s var(--ease),

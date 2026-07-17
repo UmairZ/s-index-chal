@@ -108,7 +108,7 @@ export const HERO = {
 export const RESEARCHERS = [
   {
     score: 3, slug: 'david-bissig', name: 'David Bissig',
-    meta: 'Neuroscience · 5 shared datasets',
+    meta: 'Neuroscience · 6 shared datasets',
   },
   {
     score: 1, slug: 'jeffrey-kaye', name: 'Jeffrey Kaye',
