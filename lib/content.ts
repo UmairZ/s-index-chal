@@ -7,7 +7,6 @@ export interface Principle {
   title: string;
   body: string;
   maps: string;
-  note: string;
 }
 
 export const PRINCIPLES: Principle[] = [
@@ -15,25 +14,21 @@ export const PRINCIPLES: Principle[] = [
     key: 'p1', num: 1, title: 'Inherent value',
     body: 'FAIR-aligned sharing is a real contribution, even when nobody has reused the data yet.',
     maps: 'the floor',
-    note: 'The floor. A qualifying dataset is worth at least 1, even if nobody has touched it yet.',
   },
   {
     key: 'p2', num: 2, title: 'How & where shared',
     body: 'Whether data can be reused at all depends on where it lives and how it is described.',
     maps: 'the gate',
-    note: 'ω — citations, weighted ten to one over downloads. Only possible with a persistent identifier.',
   },
   {
     key: 'p3', num: 3, title: 'Norms & ethics',
     body: 'Impact means different things in different fields, so it should be judged inside one.',
     maps: 'normalisation',
-    note: 'μg/μf — measured against the citation norms of its own discipline.',
   },
   {
     key: 'p4', num: 4, title: 'Collaborative credit',
     body: 'Research is collective. Contributions across the data lifecycle should be named.',
     maps: 'ORCID + CRediT',
-    note: 'θ — downloads, excluding your own. Only countable when contributors are named.',
   },
 ];
 
