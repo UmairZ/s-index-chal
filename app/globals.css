@@ -298,8 +298,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .wb-term.t2 i,.wb-num.t2{color:var(--p2-l)}
 .wb-term.t3 i,.wb-term.t3 .wb-fix{color:var(--p3-l)}
 .wb-num{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
-  border-radius:7px;color:inherit;font:inherit;padding:1px 6px;text-align:center}
+  border-radius:7px;color:inherit;font:inherit;padding:1px 6px;text-align:center;
+  -moz-appearance:textfield;appearance:textfield}
 .wb-num:focus{outline:none;border-color:#fff;background:rgba(255,255,255,.14)}
+.wb-num::-webkit-outer-spin-button,.wb-num::-webkit-inner-spin-button{
+  -webkit-appearance:none;margin:0}
 .wb-fix{padding:1px 6px}
 .wb-path{font:500 12px/1.5 var(--sans);color:rgba(255,255,255,.5)}
 .wb-path b{color:var(--p3-l);font-weight:600}
@@ -339,7 +342,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .track .v{position:absolute;top:50%;transform:translateY(-50%);
   font:600 11.5px/1 var(--mono);color:var(--ink-2)}
 .agg-dq{margin-top:12px;font:500 12.5px/1.4 var(--sans);color:var(--p4)}
-.agg-note{margin-top:14px;font:400 11.5px/1.4 var(--sans);color:var(--ink-3)}
+.agg-snote{margin-top:14px;font:400 11.5px/1.4 var(--sans);color:var(--ink-3)}
 @media (max-width:640px){.agg-row .t{width:110px}}
 @media (prefers-reduced-motion: reduce){.fill{transition:none}}
 

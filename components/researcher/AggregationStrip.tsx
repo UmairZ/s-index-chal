@@ -1,11 +1,10 @@
 'use client';
+import { fmt1 } from '@/lib/researchers';
 
 interface AggRow {
   id: string; title: string; sNorm: number;
   qualifies: boolean; failedGate: string | null;
 }
-
-const fmt = (v: number) => (Math.round(v * 10) / 10).toFixed(1);
 
 export default function AggregationStrip({ rows, s }: { rows: AggRow[]; s: number }) {
   const q = rows.filter(r => r.qualifies).slice().sort((a, b) => b.sNorm - a.sNorm);
@@ -16,9 +15,9 @@ export default function AggregationStrip({ rows, s }: { rows: AggRow[]; s: numbe
 
   return (
     <section className="agg" aria-label="How the datasets aggregate to the S-index">
-      <div className="agg-cap" aria-live="polite">
+      <div className="agg-cap">
         {s > 0
-          ? <>{s} qualifying dataset{s === 1 ? '' : 's'} clear S<sub>norm</sub> ≥ {s} → <b>S-index = {s}</b></>
+          ? <>{s} qualifying dataset{s === 1 ? '' : 's'} clear{s === 1 ? 's' : ''} S<sub>norm</sub> ≥ {s} → <b>S-index = {s}</b></>
           : <>No qualifying datasets → <b>S-index = 0</b></>}
       </div>
       <div className="agg-rows">
@@ -35,7 +34,7 @@ export default function AggregationStrip({ rows, s }: { rows: AggRow[]; s: numbe
                 className="v"
                 style={{ left: `min(calc(${pos(r.sNorm)}% + 8px), calc(100% - 44px))` }}
               >
-                {fmt(r.sNorm)}
+                {fmt1(r.sNorm)}
               </span>
             </div>
           </div>
@@ -46,7 +45,7 @@ export default function AggregationStrip({ rows, s }: { rows: AggRow[]; s: numbe
           {r.title} — does not qualify ({r.failedGate}); outside the ranking
         </div>
       ))}
-      <div className="agg-note">
+      <div className="agg-snote">
         Bar lengths use a square-root scale so small scores stay visible. The dashed line
         is the S-index cutoff.
       </div>

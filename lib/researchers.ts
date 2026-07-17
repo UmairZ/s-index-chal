@@ -35,6 +35,8 @@ export const NORM_PATH_LABEL: Record<NormPath, string> = {
 export const sNorm = (theta: number, omega: number, normFactor: number): number =>
   Math.max(1, (0.1 * theta + omega) * normFactor);
 
+export const fmt1 = (v: number): string => (Math.round(v * 10) / 10).toFixed(1);
+
 export function sIndex(rows: { sNorm: number; qualifies: boolean }[]): number {
   const vals = rows.filter(r => r.qualifies).map(r => r.sNorm);
   for (let s = vals.length; s >= 1; s--) {

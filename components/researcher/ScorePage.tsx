@@ -116,8 +116,9 @@ export default function ScorePage({ r }: { r: Researcher }) {
           </div>
           {hasProvisional && (
             <div className="cav prov">
-              Per-dataset figures on this page are illustrative pending the team&rsquo;s
-              final calculation document; the published S-index values are real.
+              Per-dataset titles and figures on this page are illustrative pending the
+              team&rsquo;s final calculation document; the published S-index values are
+              real.
             </div>
           )}
         </section>
