@@ -93,35 +93,17 @@ export default function ScorePage({ r }: { r: Researcher }) {
           onEdit={onEdit}
         />
         <AggregationStrip rows={rows} s={s} />
-        <section className="story">
-          <div className="k">{r.story.title}</div>
-          {r.story.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
-        </section>
-
-        <section className="cavs" aria-label="Caveats">
-          <div className="cav">
-            <b>Ethics is reviewed by humans.</b>
-            The ethics criterion of the qualifying gate cannot be machine-checked; it is
-            flagged for human review before any reporting use.
-          </div>
-          <div className="cav">
-            <b>θ depends on infrastructure.</b>
-            Where a repository does not report COUNTER usage, θ is 0 regardless of real
-            use. It did not bite here — Dryad reports downloads.
-          </div>
-          <div className="cav">
-            <b>Counts drift live.</b>
-            Download counts update continuously; SATURN was observed at 372, 376 and 391
-            across successive runs.
-          </div>
-          {hasProvisional && (
+        {/* Team is deciding what narrative content goes below the workbench;
+            the story/caveats sections were removed 2026-07-16 pending that. */}
+        {hasProvisional && (
+          <section className="cavs" aria-label="Data status">
             <div className="cav prov">
               Per-dataset titles and figures on this page are illustrative pending the
               team&rsquo;s final calculation document; the published S-index values are
               real.
             </div>
-          )}
-        </section>
+          </section>
+        )}
 
         {other && (
           <Link href={`/researchers/${other.slug}`} className="xlink">
