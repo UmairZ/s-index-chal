@@ -320,3 +320,25 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   .wb-eq{animation:none}
   .wb-it{transition:none}
 }
+
+/* ---- aggregation strip ---- */
+.agg{background:#fff;border:1px solid var(--rule);border-radius:16px;
+  padding:22px 24px;margin-top:16px}
+.agg-cap{font:500 14.5px/1.4 var(--sans);color:var(--ink-2);margin-bottom:16px}
+.agg-cap b{color:var(--ink)}
+.agg-row{display:flex;align-items:center;gap:14px;margin:9px 0}
+.agg-row .t{flex:none;width:200px;font:500 12.5px/1.35 var(--sans);
+  color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  text-align:right}
+.track{position:relative;flex:1;height:22px;background:var(--rule-2);border-radius:6px}
+.fill{height:100%;border-radius:6px;background:var(--p1);opacity:.85;
+  transition:width .35s var(--ease)}
+.fill.under{background:var(--ink-3);opacity:.5}
+.track .cut{position:absolute;top:-4px;bottom:-4px;
+  border-left:2px dashed var(--p4);opacity:.65}
+.track .v{position:absolute;top:50%;transform:translateY(-50%);
+  font:600 11.5px/1 var(--mono);color:var(--ink-2)}
+.agg-dq{margin-top:12px;font:500 12.5px/1.4 var(--sans);color:var(--p4)}
+.agg-note{margin-top:14px;font:400 11.5px/1.4 var(--sans);color:var(--ink-3)}
+@media (max-width:640px){.agg-row .t{width:110px}}
+@media (prefers-reduced-motion: reduce){.fill{transition:none}}

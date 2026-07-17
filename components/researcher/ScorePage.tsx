@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FOOTER } from '@/lib/content';
 import { RESEARCHER_LIST, sNorm, sIndex, type Researcher } from '@/lib/researchers';
 import Workbench from '@/components/researcher/Workbench';
+import AggregationStrip from '@/components/researcher/AggregationStrip';
 
 interface Edit { theta: number; omega: number }
 
@@ -91,7 +92,7 @@ export default function ScorePage({ r }: { r: Researcher }) {
           onSelect={setSelected}
           onEdit={onEdit}
         />
-        {/* Task 4 mounts <AggregationStrip/> after Workbench */}
+        <AggregationStrip rows={rows} s={s} />
         <section className="story">
           <div className="k">{r.story.title}</div>
           {r.story.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
