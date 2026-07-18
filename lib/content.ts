@@ -16,12 +16,12 @@ export interface Principle {
 export const PRINCIPLES: Principle[] = [
   {
     key: 'p2', title: 'How & where shared',
-    body: 'Reuse potential depends on how and where data are shared.',
+    body: 'Effective data reuse requires how and where data are shared: they must be FAIR (Findable, Accessible, Interoperable, Reusable).',
     maps: 'Gate',
     note: 'The gate. Reuse needs a FAIR repository — persistent ID, metadata, a clear licence — or the dataset scores 0.',
   },
   {
-    key: 'p4', title: 'Data is a team effort',
+    key: 'p4', title: 'Collaborative credit',
     body: 'Research is collaborative. Contributions across the data lifecycle deserve credit.',
     maps: 'Gate',
     note: 'The gate, again. Every contributor named, their role and an ORCID recorded — otherwise the score cannot be attributed at all.',
@@ -56,7 +56,7 @@ export interface Panel {
 
 export const PANELS: Record<TermKey, Panel> = {
   max: {
-    badge: 'Inherent value', principle: 'p1', title: 'The floor',
+    badge: 'Floor', principle: 'p1', title: 'Sharing is a contribution',
     paragraphs: [
       'Nearly every metric waits for someone else to act. A paper is worth nothing until cited; a dataset, nothing until downloaded. That makes the metric a measure of <em>luck and visibility</em> as much as of contribution.',
       'The floor refuses that. A dataset prepared properly, documented, licensed and deposited where others can find it is <em>already a contribution</em>. It is worth at least 1, today, whether or not anyone has come looking for it.',
@@ -109,7 +109,7 @@ export const PANELS: Record<TermKey, Panel> = {
 
 export const HERO = {
   kicker: 'A measure of shared data',
-  headline: 'Sharing data is a scientific contribution. Nothing measures it.',
+  headline: 'Sharing data is a scientific contribution. It deserves to be measured.',
   sub: 'The h-index counts papers, not shared data. The S-index measures data sharing based on four principles.',
 };
 
