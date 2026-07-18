@@ -182,7 +182,8 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
       <div className="as-eq">
         <Equation interactive={assembled} onTermClick={onTermClick} highlight={activeTerm} />
         <div className="as-prompt">
-          Every principle is now part of one equation. <b>Click any term or card to go deeper.</b>
+          Every principle is now part of one equation.<br />
+          <b>Click any term or card to go deeper.</b>
         </div>
       </div>
       <div className="as-hint" aria-hidden="true">Scroll<span className="chev" /></div>

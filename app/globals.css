@@ -230,7 +230,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .astage.settled .acard{cursor:pointer}
 .as-eq{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;
   opacity:0;text-align:center}
-.as-prompt{margin-top:26px;font:500 14px/1 var(--sans);color:rgba(255,255,255,.55);opacity:0}
+.as-prompt{margin-top:22px;font:500 14px/1.5 var(--sans);color:rgba(255,255,255,.55);opacity:0}
 .as-prompt b{color:#fff;font-weight:600}
 .as-hint{position:absolute;left:0;right:0;bottom:5%;text-align:center;z-index:30;
   font:500 12.5px/1 var(--sans);color:rgba(255,255,255,.4);pointer-events:none}
