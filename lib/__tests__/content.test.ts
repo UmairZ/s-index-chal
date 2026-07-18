@@ -19,5 +19,5 @@ describe('content integrity', () => {
     for (const panel of Object.values(PANELS))
       for (const link of panel.links) expect(PANELS[link.term]).toBeDefined();
   });
-  it('has two example researchers', () => expect(RESEARCHERS).toHaveLength(2));
+  it('has five example researchers', () => expect(RESEARCHERS).toHaveLength(5));
 });

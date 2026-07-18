@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { NORM_PATH_LABEL, fmt1, type Dataset } from '@/lib/researchers';
+import { fmt1, type Dataset } from '@/lib/researchers';
 
 export interface WbRow extends Dataset { sNorm: number }
 
@@ -39,7 +39,10 @@ export default function Workbench({ rows, selected, sValue, onSelect, onEdit }: 
             onClick={() => onSelect(d.id)}
           >
             <b>{d.title}</b>
-            <span className="m">{d.repository}{d.year ? ` · ${d.year}` : ''}</span>
+            <span className="m">
+              {d.repository}{d.year ? ` · ${d.year}` : ''}
+              {d.illustrative && <span className="illus">illustrative</span>}
+            </span>
             {d.qualifies
               ? <span className="sn">S<sub>norm</sub> {fmt1(d.sNorm)}</span>
               : <span className="bad">does not qualify · {d.failedGate}</span>}
@@ -80,7 +83,7 @@ function EqPane({ sel, sValue, onEdit }: { sel: WbRow; sValue: number; onEdit: P
     <div className="wb-eq">
       <div className="wb-ds">
         <b>{sel.title}</b>
-        <span>{sel.repository}{sel.doi ? ` · DOI ${sel.doi}` : ''}</span>
+        <span>{sel.repository}{sel.illustrative ? ' · illustrative example' : ''}</span>
       </div>
       <div className="wb-line" role="group" aria-label="The equation with this dataset's values">
         <span className="g">S<sub>norm</sub> = </span>
@@ -112,8 +115,8 @@ function EqPane({ sel, sValue, onEdit }: { sel: WbRow; sValue: number; onEdit: P
         </div>
       </div>
       <div className="wb-path">
-        normalised via <b>{NORM_PATH_LABEL[sel.normPath]}</b> — the field mean is not
-        the researcher&rsquo;s number, so it stays fixed
+        normalised against the <b>{sel.subfield ?? 'global'} mean</b> — the field mean is
+        not the researcher&rsquo;s number, so it stays fixed
       </div>
       <p className="wb-out" aria-live="polite">
         {sel.qualifies ? (

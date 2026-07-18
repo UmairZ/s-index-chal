@@ -24,7 +24,7 @@ export const PRINCIPLES: Principle[] = [
     key: 'p4', title: 'Collaborative credit',
     body: 'Research is collective. Contributions across the data lifecycle should be named.',
     maps: 'the gate',
-    note: 'The gate, again. Every contributor named, with CRediT roles and ORCID — otherwise the score cannot be attributed at all.',
+    note: 'The gate, again. Every contributor named, their role and an ORCID recorded — otherwise the score cannot be attributed at all.',
   },
   {
     key: 'p1', title: 'Inherent value',
@@ -68,12 +68,12 @@ export const PANELS: Record<TermKey, Panel> = {
     title: 'Qualified — or zero',
     paragraphs: [
       'The equation has two branches. A dataset that qualifies gets scored. A dataset that does not <em>scores zero — no matter how heavily it was downloaded or cited.</em>',
-      'Two principles meet at this brace. <em>How &amp; where shared:</em> reuse is only possible when data lives in a FAIR repository, with a persistent identifier and a clear licence. <em>Collaborative credit:</em> a score is only attributable when every contributor is named, with CRediT roles and ORCID. The gate is not an obstacle in front of the equation — it is the reason the equation means anything.',
+      'Two principles meet at this brace. <em>How &amp; where shared:</em> reuse is only possible when data lives in a FAIR repository, with a persistent identifier and a clear licence. <em>Collaborative credit:</em> a score is only attributable when every contributor is named, with their role and an ORCID recorded. The gate is not an obstacle in front of the equation — it is the reason the equation means anything.',
     ],
     checksLead: 'Every dataset must clear all three:',
     checks: [
       { title: 'Usefulness', body: 'A FAIR repository: persistent ID, metadata, a clear licence.', principle: 'p2' },
-      { title: 'Recognition', body: 'CRediT roles and ORCID for every contributor.', principle: 'p4' },
+      { title: 'Recognition', body: 'A named role and an ORCID for every contributor.', principle: 'p4' },
       { title: 'Ethical responsibility', body: 'Consent, privacy and governance, documented.', principle: 'p4' },
     ],
     links: [
@@ -115,12 +115,24 @@ export const HERO = {
 
 export const RESEARCHERS = [
   {
-    score: 3, slug: 'david-bissig', name: 'David Bissig',
-    meta: 'Neuroscience · 6 shared datasets',
+    score: 3, slug: 'rowan-vale', name: 'Rowan Vale',
+    meta: 'Neurology · 5 shared datasets',
   },
   {
-    score: 1, slug: 'jeffrey-kaye', name: 'Jeffrey Kaye',
+    score: 1, slug: 'iris-thorne', name: 'Iris Thorne',
     meta: 'Neurology · 1 linked dataset — and that’s the finding',
+  },
+  {
+    score: 3, slug: 'marta-lindqvist', name: 'Marta Lindqvist',
+    meta: 'Plant genetics · 8 datasets — normalisation lifts a 2 to a 3',
+  },
+  {
+    score: 3, slug: 'omar-reyes', name: 'Omar Reyes',
+    meta: 'Insect physiology · 15 datasets',
+  },
+  {
+    score: 5, slug: 'helen-ashby', name: 'Helen Ashby',
+    meta: 'Evolutionary ecology · 12 datasets',
   },
 ];
 

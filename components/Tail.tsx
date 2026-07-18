@@ -6,7 +6,7 @@ export default function Tail() {
     <>
       <section className="tail wrap">
         <div className="k">See it work</div>
-        <h2>Two researchers, and every number traced</h2>
+        <h2>Five researchers, every number traced</h2>
         <p>
           The same equation, carrying real shared data — open a researcher and drive
           the numbers yourself.

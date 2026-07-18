@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { FOOTER } from '@/lib/content';
-import { RESEARCHER_LIST, sNorm, sIndex, type Researcher } from '@/lib/researchers';
+import { RESEARCHER_LIST, sNorm, sIndex, sIndexGlobal, type Researcher } from '@/lib/researchers';
 import Workbench from '@/components/researcher/Workbench';
 import AggregationStrip from '@/components/researcher/AggregationStrip';
 import RaiseScore from '@/components/researcher/RaiseScore';
@@ -59,13 +59,21 @@ export default function ScorePage({ r }: { r: Researcher }) {
   const s = sIndex(rows);
   const edited = Object.keys(edits).length > 0;
 
-  const other = RESEARCHER_LIST.find(x => x.slug !== r.slug);
-  const otherS = other
-    ? sIndex(other.datasets.map(d => ({
-        sNorm: sNorm(d.theta, d.omega, d.normFactor), qualifies: d.qualifies,
-      })))
-    : 0;
-  const hasProvisional = r.datasets.some(d => d.provisional);
+  // cross-link to the next researcher in the list, wrapping around
+  const idx = RESEARCHER_LIST.findIndex(x => x.slug === r.slug);
+  const other = RESEARCHER_LIST[(idx + 1) % RESEARCHER_LIST.length];
+  const otherS = sIndex(other.datasets.map(d => ({
+    sNorm: sNorm(d.theta, d.omega, d.normFactor), qualifies: d.qualifies,
+  })));
+
+  const realCount = r.datasets.filter(d => !d.illustrative).length;
+  const hasIllustrative = r.datasets.some(d => d.illustrative);
+  // the same portfolio scored without field normalisation (raw 0.1θ + ω)
+  const globalS = sIndexGlobal(r.datasets);
+  const fieldS = sIndex(r.datasets.map(d => ({
+    sNorm: sNorm(d.theta, d.omega, d.normFactor), qualifies: d.qualifies,
+  })));
+  const showNormNote = globalS !== fieldS;
 
   return (
     <div className="rpage">
@@ -75,13 +83,9 @@ export default function ScorePage({ r }: { r: Researcher }) {
           <div className="rh-id">
             <h1>{r.name}</h1>
             <div className="rh-meta">
-              {r.orcid && (
-                <a href={`https://orcid.org/${r.orcid}`} target="_blank" rel="noreferrer">
-                  ORCID {r.orcid}
-                </a>
-              )}
+              {r.orcid && <span className="rh-orcid">ORCID {r.orcid}</span>}
               <span>{r.field}</span>
-              <span>{r.datasets.length} dataset{r.datasets.length === 1 ? '' : 's'}</span>
+              <span>{realCount} dataset{realCount === 1 ? '' : 's'}</span>
             </div>
             <p className="rh-sentence">{r.scoreSentence}</p>
           </div>
@@ -114,17 +118,30 @@ export default function ScorePage({ r }: { r: Researcher }) {
           onEdit={onEdit}
         />
         <AggregationStrip rows={rows} s={s} />
+        {showNormNote && (
+          <p className="normnote">
+            Without field normalisation — every dataset measured against one global
+            average — this portfolio would score <b>{globalS}</b>. Weighted against
+            each dataset&rsquo;s own field, it&rsquo;s <b>{fieldS}</b>: reuse in a
+            lower-citation discipline counts for what it is worth.
+          </p>
+        )}
         <RaiseScore rows={rows} s={s} note={r.raiseNote} />
 
-        {hasProvisional && (
-          <section className="cavs" aria-label="Data status">
+        <section className="cavs" aria-label="Data status">
+          {hasIllustrative && (
             <div className="cav prov">
-              Per-dataset titles and figures on this page are illustrative pending the
-              team&rsquo;s final calculation document; the published S-index values are
-              real.
+              The final dataset below is marked <b>illustrative</b> — a constructed
+              example of a dataset that fails the qualifying gate, included to show how
+              the gate works. It is not part of this record and does not affect the
+              S-index.
             </div>
-          </section>
-        )}
+          )}
+          <div className="cav">
+            Researcher name and ORCID are pseudonyms. The dataset records, download and
+            citation counts, and S-index values are real.
+          </div>
+        </section>
 
         {other && (
           <Link href={`/researchers/${other.slug}`} className="xlink">
