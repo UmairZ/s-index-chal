@@ -62,7 +62,8 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
     const cx = W / 2, cy = H / 2;
     const off = Math.min(265, cx - ew - 24);
     const leftX = cx - off - ew, rightX = cx + off;
-    const upY = cy - 205, downY = cy + 35;
+    // the piecewise equation is two rows tall, so the lower cards sit further down
+    const upY = cy - 205, downY = cy + 70;
     geo.current = {
       startS, endS,
       start: [0, 1, 2, 3].map(i => ({ x: x0 + i * (sw + gap), y: y0 })),
@@ -80,12 +81,18 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
     let out = '';
     PRINCIPLES.forEach((p, i) => {
       const card = el.querySelector(`.acard[data-i="${i}"]`);
-      // first match — 'max' has two buttons, wire to the opening paren
-      const term = el.querySelector(`.term[data-term="${CARD_TERM[p.key]}"]`);
+      // first match — 'max' has two buttons and 'gate' three; wire to the
+      // opening paren / the brace respectively
+      const key = CARD_TERM[p.key];
+      const term = el.querySelector(`.term[data-term="${key}"]`);
       if (!card || !term) return;
       const c = card.getBoundingClientRect(), r = term.getBoundingClientRect();
       const cx = c.left + c.width / 2 - d.left, cy = c.top + c.height / 2 - d.top;
-      const tx = r.left + r.width / 2 - d.left, ty = r.top + r.height / 2 - d.top;
+      const tx = r.left + r.width / 2 - d.left;
+      // both gate principles land on the brace: p2 upper (gold), p4 lower (rose)
+      const ty = key === 'gate'
+        ? r.top + r.height * (p.key === 'p2' ? 0.24 : 0.62) - d.top
+        : r.top + r.height / 2 - d.top;
       const mx = (cx + tx) / 2;
       const col = WIRE_COLOR[p.key];
       out += `<path d="M ${cx} ${cy} C ${mx} ${cy}, ${mx} ${ty}, ${tx} ${ty}" fill="none" `

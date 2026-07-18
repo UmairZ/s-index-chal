@@ -1,24 +1,23 @@
 import { describe, it, expect } from 'vitest';
-import { PRINCIPLES, PANELS, TERM_META, CARD_TERM, RESEARCHERS } from '../content';
+import { PRINCIPLES, PANELS, CARD_TERM, RESEARCHERS } from '../content';
 
 describe('content integrity', () => {
-  it('has exactly four principles, p1..p4 in order', () => {
-    expect(PRINCIPLES.map(p => p.key)).toEqual(['p1', 'p2', 'p3', 'p4']);
-    expect(PRINCIPLES.map(p => p.num)).toEqual([1, 2, 3, 4]);
+  it('has all four principles, gate principles leading', () => {
+    expect(PRINCIPLES.map(p => p.key)).toEqual(['p2', 'p4', 'p1', 'p3']);
   });
   it('has a panel for every term', () => {
-    expect(Object.keys(PANELS).sort()).toEqual(['max', 'norm', 'omega', 'theta']);
+    expect(Object.keys(PANELS).sort()).toEqual(['gate', 'max', 'norm', 'omega', 'theta']);
   });
-  it('maps every principle to a distinct term and back', () => {
-    const terms = Object.values(CARD_TERM);
-    expect(new Set(terms).size).toBe(4);
-    for (const [term, meta] of Object.entries(TERM_META)) {
-      expect(CARD_TERM[meta.principle]).toBe(term);
-    }
+  it('wires every principle card to a term with a panel; both gate principles share the brace', () => {
+    for (const term of Object.values(CARD_TERM)) expect(PANELS[term]).toBeDefined();
+    expect(CARD_TERM.p2).toBe('gate');
+    expect(CARD_TERM.p4).toBe('gate');
+    expect(CARD_TERM.p1).toBe('max');
+    expect(CARD_TERM.p3).toBe('norm');
   });
   it('panel links point at real terms', () => {
     for (const panel of Object.values(PANELS))
-      for (const link of panel.links) expect(TERM_META[link.term]).toBeDefined();
+      for (const link of panel.links) expect(PANELS[link.term]).toBeDefined();
   });
   it('has two example researchers', () => expect(RESEARCHERS).toHaveLength(2));
 });

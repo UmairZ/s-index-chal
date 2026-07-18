@@ -83,22 +83,33 @@ function EqPane({ sel, sValue, onEdit }: { sel: WbRow; sValue: number; onEdit: P
         <span>{sel.repository}{sel.doi ? ` · DOI ${sel.doi}` : ''}</span>
       </div>
       <div className="wb-line" role="group" aria-label="The equation with this dataset's values">
-        <span className="g">S<sub>norm</sub> = max( 1, ( 0.1 · </span>
-        <span className="wb-term t4">
-          <i>θ downloads</i>
-          {num('theta', sel.theta, 't4', 'θ — honest downloads')}
-        </span>
-        <span className="g"> + </span>
-        <span className="wb-term t2">
-          <i>ω citations</i>
-          {num('omega', sel.omega, 't2', 'ω — citations')}
-        </span>
-        <span className="g"> ) × </span>
-        <span className="wb-term t3">
-          <i>μ<sub>g</sub>/μ<sub>f</sub></i>
-          <span className="wb-fix">{sel.normFactor}</span>
-        </span>
-        <span className="g"> )</span>
+        <span className="g">S<sub>norm</sub> = </span>
+        <span className="wb-brace" aria-hidden="true">{'{'}</span>
+        <div className="wb-branches">
+          <div className={`wb-branch${sel.qualifies ? '' : ' dim'}`}>
+            <span className="g">max( 1, ( 0.1 · </span>
+            <span className="wb-term th">
+              <i>θ downloads</i>
+              {num('theta', sel.theta, 'th', 'θ — honest downloads')}
+            </span>
+            <span className="g"> + </span>
+            <span className="wb-term om">
+              <i>ω citations</i>
+              {num('omega', sel.omega, 'om', 'ω — citations')}
+            </span>
+            <span className="g"> ) × </span>
+            <span className="wb-term t3">
+              <i>μ<sub>g</sub>/μ<sub>f</sub></i>
+              <span className="wb-fix">{sel.normFactor}</span>
+            </span>
+            <span className="g"> )</span>
+            <span className="wb-cond">qualified<span className="dots"><i className="d2" /><i className="d4" /></span></span>
+          </div>
+          <div className={`wb-branch bot${sel.qualifies ? ' dim' : ''}`}>
+            <span className="z">0</span>
+            <span className="ow">otherwise</span>
+          </div>
+        </div>
       </div>
       <div className="wb-path">
         normalised via <b>{NORM_PATH_LABEL[sel.normPath]}</b> — the field mean is not
@@ -112,14 +123,17 @@ function EqPane({ sel, sValue, onEdit }: { sel: WbRow; sValue: number; onEdit: P
             <span className="agg-note"> · S-index {sValue}</span>
           </>
         ) : (
-          <>S<sub>norm</sub> would be {fmt1(sel.sNorm)} — <b>not counted</b></>
+          <>
+            S<sub>norm</sub> = <b className="z0">0</b> — blocked at the gate
+            <span className="agg-note"> · S-index {sValue}</span>
+          </>
         )}
       </p>
       {!sel.qualifies && (
         <div className="wb-gate">
           Blocked at the gate: <b>{sel.failedGate}</b>. A dataset that fails a qualifying
-          criterion is excluded from the S-index entirely — the equation only ever runs
-          on qualifying datasets.
+          criterion scores 0 — the top branch never runs. Qualified, it would have
+          scored {fmt1(sel.sNorm)}.
         </div>
       )}
     </div>
