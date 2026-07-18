@@ -137,4 +137,4 @@ export const RESEARCHERS = [
 ];
 
 export const FOOTER =
-  'Travis Redd · Robin Champieux · Michelle Hribar · Maria Woodward · Paula Anne Newman-Casey · Umair Zaidi';
+  'Travis Redd, CU Anschutz; Maria Woodward, Paula Anne Newman-Casey, University of Michigan; Michelle Hribar, UIC; Robin Champieux, OHSU. Website by Umair Zaidi, OHSU.';
