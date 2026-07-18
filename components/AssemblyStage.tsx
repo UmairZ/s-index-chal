@@ -54,7 +54,7 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
     // row sits below the heading block, never overlapping it
     const head = el.querySelector<HTMLElement>('.as-head');
     const headBottom = head ? head.offsetTop + head.offsetHeight : H * 0.35;
-    const x0 = (W - rowW) / 2, y0 = Math.max(H * 0.42, headBottom + 28);
+    const x0 = (W - rowW) / 2, y0 = Math.max(H * 0.40, headBottom + 16);
     // settled corners around the centred equation; cards are compact there
     // (body text collapsed via .settled CSS), so they shrink less and stay readable
     const endS = 0.82;

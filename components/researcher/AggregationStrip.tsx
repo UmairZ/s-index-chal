@@ -42,7 +42,7 @@ export default function AggregationStrip({ rows, s }: { rows: AggRow[]; s: numbe
       </div>
       {dq.map(r => (
         <div className="agg-dq" key={r.id}>
-          {r.title} — does not qualify ({r.failedGate}); outside the ranking
+          {r.title}: does not qualify ({r.failedGate}); outside the ranking
         </div>
       ))}
       <div className="agg-snote">

@@ -25,11 +25,11 @@ export default function Equation({ interactive = true, onTermClick, highlight }:
     <div className="eq" role="group" aria-label="The S-index equation. Each coloured piece opens an explanation.">
       <span className="g">S<sub>norm</sub>&nbsp;=&nbsp;</span>
       {term('gate', 't-gate brace',
-        'The qualifying gate — how and where shared, collaborative credit',
+        'The qualifying gate: how and where shared, collaborative credit',
         <span className="bg">{'{'}</span>)}
       <div className="branches">
         <div className="branch">
-          {term('max', 't-p1', 'The floor: max of 1 — inherent value', <>max(&nbsp;1&nbsp;,</>)}
+          {term('max', 't-p1', 'The floor: max of 1, inherent value', <>max(&nbsp;1&nbsp;,</>)}
           <span className="seg">
             <span className="g">&nbsp;(0.1·</span>
             {term('theta', 't-plain', 'Theta: honest downloads', <>θ</>)}
@@ -37,11 +37,11 @@ export default function Equation({ interactive = true, onTermClick, highlight }:
             {term('omega', 't-plain', 'Omega: citations', <>ω</>)}
             <span className="g">)&nbsp;×&nbsp;</span>
           </span>
-          {term('norm', 't-p3', 'Mu-g over mu-f: field normalisation — norms and ethics',
+          {term('norm', 't-p3', 'Mu-g over mu-f: field normalisation, norms and ethics',
             <>μ<sub>g</sub>/μ<sub>f</sub></>)}
-          {term('max', 't-p1', 'Closing the floor: max of 1 — inherent value', <>)</>)}
+          {term('max', 't-p1', 'Closing the floor: max of 1, inherent value', <>)</>)}
           {term('gate', 't-gate cond',
-            'Qualified: the gate — how and where shared, collaborative credit',
+            'Qualified: the gate, how and where shared, collaborative credit',
             <>qualified<span className="dots"><i className="d2" /><i className="d4" /></span></>)}
         </div>
         <div className="branch bot">

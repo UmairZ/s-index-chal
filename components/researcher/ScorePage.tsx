@@ -120,8 +120,8 @@ export default function ScorePage({ r }: { r: Researcher }) {
         <AggregationStrip rows={rows} s={s} />
         {showNormNote && (
           <p className="normnote">
-            Without field normalisation — every dataset measured against one global
-            average — this portfolio would score <b>{globalS}</b>. Weighted against
+            Without field normalisation (every dataset measured against one global
+            average), this portfolio would score <b>{globalS}</b>. Weighted against
             each dataset&rsquo;s own field, it&rsquo;s <b>{fieldS}</b>: reuse in a
             lower-citation discipline counts for what it is worth.
           </p>
@@ -131,7 +131,7 @@ export default function ScorePage({ r }: { r: Researcher }) {
         <section className="cavs" aria-label="Data status">
           {hasIllustrative && (
             <div className="cav prov">
-              The final dataset below is marked <b>illustrative</b> — a constructed
+              The final dataset below is marked <b>illustrative</b>: a constructed
               example of a dataset that fails the qualifying gate, included to show how
               the gate works. It is not part of this record and does not affect the
               S-index.

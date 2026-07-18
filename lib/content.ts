@@ -18,13 +18,13 @@ export const PRINCIPLES: Principle[] = [
     key: 'p2', title: 'How & where shared',
     body: 'Effective data reuse requires how and where data are shared: they must be FAIR (Findable, Accessible, Interoperable, Reusable).',
     maps: 'Gate',
-    note: 'The gate. Reuse needs a FAIR repository — persistent ID, metadata, a clear licence — or the dataset scores 0.',
+    note: 'The gate. Reuse needs a FAIR repository (persistent ID, metadata, a clear licence), or the dataset scores 0.',
   },
   {
     key: 'p4', title: 'Collaborative credit',
     body: 'Research is collaborative. Contributions across the data lifecycle deserve credit.',
     maps: 'Gate',
-    note: 'The gate, again. Every contributor named, their role and an ORCID recorded — otherwise the score cannot be attributed at all.',
+    note: 'The gate, again. Every contributor named, their role and an ORCID recorded. Otherwise the score cannot be attributed at all.',
   },
   {
     key: 'p1', title: 'Sharing is a contribution',
@@ -36,7 +36,7 @@ export const PRINCIPLES: Principle[] = [
     key: 'p3', title: 'Norms & ethics',
     body: 'Responsible sharing reflects disciplinary norms and ethics. So should the metrics that assess it.',
     maps: 'Normalisation',
-    note: 'μg/μf — measured against the citation norms of its own discipline.',
+    note: 'μg/μf, measured against the citation norms of its own discipline.',
   },
 ];
 
@@ -65,10 +65,10 @@ export const PANELS: Record<TermKey, Panel> = {
   },
   gate: {
     badge: 'How & where shared · Collaborative credit', principle: 'gate',
-    title: 'Qualified — or zero',
+    title: 'Qualified, or zero',
     paragraphs: [
-      'The equation has two branches. A dataset that qualifies gets scored. A dataset that does not <em>scores zero — no matter how heavily it was downloaded or cited.</em>',
-      'Two principles meet at this brace. <em>How &amp; where shared:</em> reuse is only possible when data lives in a FAIR repository, with a persistent identifier and a clear licence. <em>Collaborative credit:</em> a score is only attributable when every contributor is named, with their role and an ORCID recorded. The gate is not an obstacle in front of the equation — it is the reason the equation means anything.',
+      'The equation has two branches. A dataset that qualifies gets scored. A dataset that does not <em>scores zero, no matter how heavily it was downloaded or cited.</em>',
+      'Two principles meet at this brace. <em>How &amp; where shared:</em> reuse is only possible when data lives in a FAIR repository, with a persistent identifier and a clear licence. <em>Collaborative credit:</em> a score is only attributable when every contributor is named, with their role and an ORCID recorded. The gate is not an obstacle in front of the equation. It is the reason the equation means anything.',
     ],
     checksLead: 'Every dataset must clear all three:',
     checks: [
@@ -77,23 +77,23 @@ export const PANELS: Record<TermKey, Panel> = {
       { title: 'Ethical responsibility', body: 'Consent, privacy and governance, documented.', principle: 'p4' },
     ],
     links: [
-      { label: 'θ — honest downloads →', term: 'theta' },
+      { label: 'θ: honest downloads →', term: 'theta' },
       { label: 'Then it gets normalised →', term: 'norm' },
     ],
   },
   theta: {
-    badge: 'In the equation', principle: 'plain', title: 'θ — honest downloads',
+    badge: 'In the equation', principle: 'plain', title: 'θ: honest downloads',
     paragraphs: [
-      'θ counts downloads <em>by people who are not contributors</em>. Nothing stops a researcher downloading their own dataset ten thousand times — unless the record says who they are.',
+      'θ counts downloads <em>by people who are not contributors</em>. Nothing stops a researcher downloading their own dataset ten thousand times, unless the record says who they are.',
       'That is one reason the gate requires every contributor to be named: without ORCID on the record, honest downloads cannot be counted at all.',
     ],
     links: [{ label: 'Citations weigh more →', term: 'omega' }],
   },
   omega: {
-    badge: 'In the equation', principle: 'plain', title: 'ω — citations, ten to one',
+    badge: 'In the equation', principle: 'plain', title: 'ω: citations, ten to one',
     paragraphs: [
       'A download is not a use. A citation is a far stronger claim: <em>this data changed what I could say.</em> So citations weigh ten times more than downloads.',
-      'And ω is only measurable at all for data that clears the gate — <em>a dataset with no persistent identifier cannot be cited at all.</em>',
+      'And ω is only measurable at all for data that clears the gate. <em>A dataset with no persistent identifier cannot be cited at all.</em>',
     ],
     links: [{ label: 'Then it gets normalised →', term: 'norm' }],
   },
@@ -110,7 +110,7 @@ export const PANELS: Record<TermKey, Panel> = {
 export const HERO = {
   kicker: 'A measure of shared data',
   headline: 'Sharing data is a scientific contribution. It deserves to be measured.',
-  sub: 'The h-index counts papers, not shared data. The S-index measures data sharing based on four principles.',
+  sub: 'The S-index starts from four principles. Each one is built into the metric.',
 };
 
 export const RESEARCHERS = [
@@ -120,11 +120,11 @@ export const RESEARCHERS = [
   },
   {
     score: 1, slug: 'iris-thorne', name: 'Iris Thorne',
-    meta: 'Neurology · 1 linked dataset — and that’s the finding',
+    meta: 'Neurology · 1 linked dataset, and that’s the finding',
   },
   {
     score: 3, slug: 'marta-lindqvist', name: 'Marta Lindqvist',
-    meta: 'Plant genetics · 8 datasets — normalisation lifts a 2 to a 3',
+    meta: 'Plant genetics · 8 datasets, normalisation lifts a 2 to a 3',
   },
   {
     score: 3, slug: 'omar-reyes', name: 'Omar Reyes',
@@ -137,4 +137,4 @@ export const RESEARCHERS = [
 ];
 
 export const FOOTER =
-  'An AI.Health4All project · CU Anschutz · University of Michigan · UIC · OHSU';
+  'Travis Redd · Robin Champieux · Michelle Hribar · Maria Woodward · Paula Anne Newman-Casey · Umair Zaidi';

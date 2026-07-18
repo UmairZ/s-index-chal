@@ -93,12 +93,12 @@ function EqPane({ sel, sValue, onEdit }: { sel: WbRow; sValue: number; onEdit: P
             <span className="g">max( 1, ( 0.1 · </span>
             <span className="wb-term th">
               <i>θ downloads</i>
-              {num('theta', sel.theta, 'th', 'θ — honest downloads')}
+              {num('theta', sel.theta, 'th', 'θ: honest downloads')}
             </span>
             <span className="g"> + </span>
             <span className="wb-term om">
               <i>ω citations</i>
-              {num('omega', sel.omega, 'om', 'ω — citations')}
+              {num('omega', sel.omega, 'om', 'ω: citations')}
             </span>
             <span className="g"> ) × </span>
             <span className="wb-term t3">
@@ -115,19 +115,19 @@ function EqPane({ sel, sValue, onEdit }: { sel: WbRow; sValue: number; onEdit: P
         </div>
       </div>
       <div className="wb-path">
-        normalised against the <b>{sel.subfield ?? 'global'} mean</b> — the field mean is
+        normalised against the <b>{sel.subfield ?? 'global'} mean</b>. The field mean is
         not the researcher&rsquo;s number, so it stays fixed
       </div>
       <p className="wb-out" aria-live="polite">
         {sel.qualifies ? (
           <>
             S<sub>norm</sub> = <b>{fmt1(sel.sNorm)}</b>
-            {floored && <span className="floor"> · floored to 1 — the floor at work</span>}
+            {floored && <span className="floor"> · floored to 1, the floor at work</span>}
             <span className="agg-note"> · S-index {sValue}</span>
           </>
         ) : (
           <>
-            S<sub>norm</sub> = <b className="z0">0</b> — blocked at the gate
+            S<sub>norm</sub> = <b className="z0">0</b>, blocked at the gate
             <span className="agg-note"> · S-index {sValue}</span>
           </>
         )}
@@ -135,7 +135,7 @@ function EqPane({ sel, sValue, onEdit }: { sel: WbRow; sValue: number; onEdit: P
       {!sel.qualifies && (
         <div className="wb-gate">
           Blocked at the gate: <b>{sel.failedGate}</b>. A dataset that fails a qualifying
-          criterion scores 0 — the top branch never runs. Qualified, it would have
+          criterion scores 0. The top branch never runs. Qualified, it would have
           scored {fmt1(sel.sNorm)}.
         </div>
       )}

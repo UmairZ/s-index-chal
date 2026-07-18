@@ -136,7 +136,7 @@ export const RESEARCHER_LIST: Researcher[] = [
     field: 'Neurology · cognition & vision',
     scoreSentence:
       'An S-index of 3: three qualifying datasets, each with a field-normalised score of at least 3.',
-    hook: 'Five real datasets — plus an illustrative one stopped at the gate.',
+    hook: 'Five real datasets, plus an illustrative one stopped at the gate.',
     datasets: [
       SATURN,
       ds('bs-oct-alz', "Functional OCT in Alzheimer's disease",
@@ -149,7 +149,7 @@ export const RESEARCHER_LIST: Researcher[] = [
         '10.5061/dryad.gn8h3tg', 'Dryad', 2, 1, null),
       {
         id: 'bs-illus',
-        title: 'Illustrative example — retinal dataset without a licence',
+        title: 'Illustrative example: retinal dataset without a licence',
         repository: 'personal website', doi: null, year: null,
         theta: 200, omega: 2, normFactor: 1, normPath: 'global', subfield: null,
         qualifies: false, failedGate: 'no machine-readable licence (FAIR gate)',
@@ -164,7 +164,7 @@ export const RESEARCHER_LIST: Researcher[] = [
     field: 'Neurology · cognitive ageing',
     scoreSentence:
       'An S-index of 1: one ORCID-linked qualifying dataset with a normalised score of at least 1.',
-    hook: 'One linked dataset — and that is the finding.',
+    hook: 'One linked dataset, and that is the finding.',
     raiseNote:
       'For Jeffrey Kaye that is an infrastructure gap, not a sharing gap: deposits that exist today simply do not carry his ORCID, so no pipeline can count them.',
     datasets: [SATURN],

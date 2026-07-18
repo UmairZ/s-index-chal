@@ -8,7 +8,7 @@ export default function Tail() {
         <div className="k">See it work</div>
         <h2>Five researchers, every number traced</h2>
         <p>
-          The same equation, carrying real shared data — open a researcher and drive
+          The same equation, carrying real shared data. Open a researcher and drive
           the numbers yourself.
         </p>
         <div className="rcs">
