@@ -16,18 +16,18 @@ export interface Principle {
 export const PRINCIPLES: Principle[] = [
   {
     key: 'p2', title: 'How & where shared',
-    body: 'Effective data reuse requires how and where data are shared: they must be FAIR (Findable, Accessible, Interoperable, Reusable).',
+    body: 'Reuse potential depends on how and where data are shared.',
     maps: 'Gate',
     note: 'The gate. Reuse needs a FAIR repository (persistent ID, metadata, a clear licence), or the dataset scores 0.',
   },
   {
-    key: 'p4', title: 'Collaborative credit',
+    key: 'p4', title: 'Data is a team effort',
     body: 'Research is collaborative. Contributions across the data lifecycle deserve credit.',
     maps: 'Gate',
     note: 'The gate, again. Every contributor named, their role and an ORCID recorded. Otherwise the score cannot be attributed at all.',
   },
   {
-    key: 'p1', title: 'Sharing is a contribution',
+    key: 'p1', title: 'Inherent value',
     body: 'FAIR-aligned sharing is a measurable scientific contribution, even without reuse.',
     maps: 'Floor',
     note: 'The floor. A qualifying dataset is worth at least 1, even if nobody has touched it yet.',
