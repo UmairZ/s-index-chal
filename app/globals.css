@@ -226,10 +226,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 
 /* ---- researcher pages ---- */
 .rpage{min-height:100vh;background:var(--paper)}
-.rhead{position:sticky;top:0;z-index:120;background:rgba(253,253,252,.9);
+.rhead{position:fixed;top:0;left:0;right:0;z-index:120;background:rgba(253,253,252,.9);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid transparent;padding:34px 0 22px;
   transition:padding .3s var(--ease)}
+/* holds the expanded header's height so collapsing never re-flows the page;
+   the measured inline height replaces this fallback on hydration */
+.rspace{height:170px}
 .rhead.slim{padding:11px 0;border-bottom-color:var(--rule);
   box-shadow:0 6px 24px rgba(11,36,34,.05)}
 .rh-in{display:flex;align-items:center;gap:20px}
@@ -262,7 +265,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   border:1px solid var(--rule);border-radius:8px;padding:9px 13px;cursor:pointer;
   transition:border-color .15s var(--ease)}
 .reset:hover{border-color:var(--ink-3)}
-.rmain{padding:30px 0 8px}
+.rmain{padding:38px 0 8px}
 .story{margin:44px 0 0}
 .story .k{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
   color:var(--p1);margin-bottom:12px}

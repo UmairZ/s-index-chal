@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { FOOTER } from '@/lib/content';
 import { RESEARCHER_LIST, sNorm, sIndex, type Researcher } from '@/lib/researchers';
@@ -13,6 +13,21 @@ export default function ScorePage({ r }: { r: Researcher }) {
   const [edits, setEdits] = useState<Record<string, Edit>>({});
   const [slim, setSlim] = useState(false);
   const [selected, setSelected] = useState(r.datasets[0].id);
+  const headRef = useRef<HTMLElement>(null);
+  const [spacerH, setSpacerH] = useState<number | null>(null);
+
+  // The header is position:fixed so collapsing it never changes document height
+  // (a sticky header that shrinks re-flows the page and oscillates near the
+  // threshold). The spacer below it holds the expanded height, measured here.
+  useLayoutEffect(() => {
+    if (slim) return; // only measure the expanded state
+    const measure = () => {
+      if (headRef.current) setSpacerH(headRef.current.offsetHeight);
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [slim]);
 
   const onEdit = useCallback((id: string, field: 'theta' | 'omega', value: number) => {
     setEdits(prev => {
@@ -54,7 +69,7 @@ export default function ScorePage({ r }: { r: Researcher }) {
 
   return (
     <div className="rpage">
-      <header className={`rhead${slim ? ' slim' : ''}`}>
+      <header ref={headRef} className={`rhead${slim ? ' slim' : ''}`}>
         <div className="wrap rh-in">
           <Link href="/" className="rh-back" aria-label="Back to the S-index overview">S</Link>
           <div className="rh-id">
@@ -84,6 +99,11 @@ export default function ScorePage({ r }: { r: Researcher }) {
           </div>
         </div>
       </header>
+      <div
+        className="rspace"
+        style={spacerH !== null ? { height: spacerH } : undefined}
+        aria-hidden="true"
+      />
 
       <main className="wrap rmain">
         <Workbench
