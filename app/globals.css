@@ -41,10 +41,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   background:rgba(253,253,252,.72);
   -webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);
   border:1px solid rgba(13,26,25,.08);box-shadow:0 10px 30px rgba(13,26,25,.08)}
-.gnav .mark{font:600 17px/1 var(--sans);display:flex;align-items:center;gap:9px}
+.gnav .mark{font:600 17px/1 var(--sans);display:flex;align-items:center;gap:9px;
+  white-space:nowrap}
 .gnav .mark .g{width:25px;height:25px;border-radius:7px;display:grid;place-items:center;
   font:700 13px/1 var(--serif);background:var(--p1);color:#fff}
 .gnav .links{margin-left:auto;display:flex;gap:22px;font:500 13.5px/1 var(--sans);color:var(--ink-3)}
+/* the long submission title needs the row on narrow screens; the links are
+   decorative placeholders, so drop them and shrink the title to fit */
+@media(max-width:620px){
+  .gnav .links{display:none}
+  .gnav .mark{font-size:14px}
+  .gnav .mark .g{width:22px;height:22px}
+}
 
 /* ---------- left timeline nav ---------- */
 .tnav{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:120;
