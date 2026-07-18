@@ -8,6 +8,7 @@ export interface Principle {
   title: string;
   body: string;
   maps: string;
+  note: string; // shown only on the settled cards beside the equation
 }
 
 // Gate principles lead: their cards settle beside the brace they both wire into.
@@ -17,21 +18,25 @@ export const PRINCIPLES: Principle[] = [
     key: 'p2', title: 'How & where shared',
     body: 'Whether data can be reused at all depends on where it lives and how it is described.',
     maps: 'the gate',
+    note: 'The gate. Reuse needs a FAIR repository — persistent ID, metadata, a clear licence — or the dataset scores 0.',
   },
   {
     key: 'p4', title: 'Collaborative credit',
     body: 'Research is collective. Contributions across the data lifecycle should be named.',
     maps: 'the gate',
+    note: 'The gate, again. Every contributor named, with CRediT roles and ORCID — otherwise the score cannot be attributed at all.',
   },
   {
     key: 'p1', title: 'Inherent value',
     body: 'FAIR-aligned sharing is a real contribution, even when nobody has reused the data yet.',
     maps: 'the floor',
+    note: 'The floor. A qualifying dataset is worth at least 1, even if nobody has touched it yet.',
   },
   {
     key: 'p3', title: 'Norms & ethics',
     body: 'Impact means different things in different fields, so it should be judged inside one.',
     maps: 'normalisation',
+    note: 'μg/μf — measured against the citation norms of its own discipline.',
   },
 ];
 

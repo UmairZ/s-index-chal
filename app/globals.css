@@ -79,6 +79,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .prin .dot{width:11px;height:11px;border-radius:50%;display:block;margin-bottom:12px}
 .prin b{display:block;font:600 14.5px/1.3 var(--sans);margin-bottom:6px}
 .prin p{margin:0;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+/* the note only unfolds on the settled cards beside the equation */
+.prin .nt{max-height:0;opacity:0;margin:0;overflow:hidden;
+  font:400 12.2px/1.5 var(--sans);color:var(--ink-3);
+  transition:max-height .35s var(--ease),opacity .35s var(--ease),margin .35s var(--ease)}
 .prin .mp{margin-top:13px;padding-top:11px;border-top:1px dashed rgba(0,0,0,.12);
   font:500 11.5px/1.4 var(--mono)}
 .prin.p1{background:var(--p1-w)} .prin.p1 .dot{background:var(--p1)} .prin.p1 .mp{color:var(--p1)}
@@ -201,9 +205,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .acard .prin .mp{margin-top:auto}
 .acard .prin p{max-height:96px;overflow:hidden;
   transition:max-height .35s var(--ease),opacity .35s var(--ease),margin .35s var(--ease)}
-/* settled: compact card — body collapses, title grows, click affordance appears */
-.astage.settled .acard .prin{height:132px}
+/* settled: body swaps for the note — title grows, click affordance appears */
+.astage.settled .acard .prin{height:200px}
 .astage.settled .acard .prin p{max-height:0;opacity:0;margin:0}
+.astage.settled .acard .prin .nt{max-height:110px;opacity:1;margin:4px 0 0}
 .astage.settled .acard .prin b{font:600 17px/1.3 var(--sans)}
 .astage.settled .acard .prin .mp::after{content:' — click to explore'}
 .astage.settled .acard .prin:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.28)}

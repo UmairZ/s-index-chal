@@ -62,8 +62,9 @@ export default function AssemblyStage({ assembled, panelOpen, activeTerm, onTerm
     const cx = W / 2, cy = H / 2;
     const off = Math.min(265, cx - ew - 24);
     const leftX = cx - off - ew, rightX = cx + off;
-    // the piecewise equation is two rows tall, so the lower cards sit further down
-    const upY = cy - 205, downY = cy + 70;
+    // the piecewise equation is two rows tall and settled cards carry the note,
+    // so the upper cards start higher and the lower cards further down
+    const upY = cy - 275, downY = cy + 70;
     geo.current = {
       startS, endS,
       start: [0, 1, 2, 3].map(i => ({ x: x0 + i * (sw + gap), y: y0 })),
