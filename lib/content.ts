@@ -16,26 +16,26 @@ export interface Principle {
 export const PRINCIPLES: Principle[] = [
   {
     key: 'p2', title: 'How & where shared',
-    body: 'Whether data can be reused at all depends on where it lives and how it is described.',
-    maps: 'the gate',
+    body: 'Reuse potential depends on how and where data are shared.',
+    maps: 'Gate',
     note: 'The gate. Reuse needs a FAIR repository — persistent ID, metadata, a clear licence — or the dataset scores 0.',
   },
   {
-    key: 'p4', title: 'Collaborative credit',
-    body: 'Research is collective. Contributions across the data lifecycle should be named.',
-    maps: 'the gate',
+    key: 'p4', title: 'Data is a team effort',
+    body: 'Research is collaborative. Contributions across the data lifecycle deserve credit.',
+    maps: 'Gate',
     note: 'The gate, again. Every contributor named, their role and an ORCID recorded — otherwise the score cannot be attributed at all.',
   },
   {
-    key: 'p1', title: 'Inherent value',
-    body: 'FAIR-aligned sharing is a real contribution, even when nobody has reused the data yet.',
-    maps: 'the floor',
+    key: 'p1', title: 'Sharing is a contribution',
+    body: 'FAIR-aligned sharing is a measurable scientific contribution, even without reuse.',
+    maps: 'Floor',
     note: 'The floor. A qualifying dataset is worth at least 1, even if nobody has touched it yet.',
   },
   {
     key: 'p3', title: 'Norms & ethics',
-    body: 'Impact means different things in different fields, so it should be judged inside one.',
-    maps: 'normalisation',
+    body: 'Responsible sharing reflects disciplinary norms and ethics. So should the metrics that assess it.',
+    maps: 'Normalisation',
     note: 'μg/μf — measured against the citation norms of its own discipline.',
   },
 ];
@@ -109,8 +109,8 @@ export const PANELS: Record<TermKey, Panel> = {
 
 export const HERO = {
   kicker: 'A measure of shared data',
-  headline: 'Sharing data is a contribution. Nothing measures it.',
-  sub: 'The h-index counts papers; it cannot see shared data. The S-index starts from four principles — and every term in its equation exists because one of them demanded it.',
+  headline: 'Sharing data is a scientific contribution. Nothing measures it.',
+  sub: 'The h-index counts papers, not shared data. The S-index measures data sharing based on four principles.',
 };
 
 export const RESEARCHERS = [
