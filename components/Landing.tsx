@@ -102,7 +102,7 @@ export default function Landing() {
             <div className="sr-eq">
               <div className="cap">Every principle, one equation</div>
               <Equation onTermClick={setPanel} highlight={panel} />
-              <p className="sr-note">Tap any coloured term to see which principle demanded it.</p>
+              <p className="sr-note">Tap any colored term to see which principle demanded it.</p>
             </div>
           </section>
         </div>

@@ -50,7 +50,7 @@ describe('all five portfolios reproduce the published indices', () => {
       expect(sIndexGlobal(r.datasets)).toBe(exp.global);
     });
   }
-  it('field normalisation lifts Lindqvist and Reyes from a global 2 to a 3', () => {
+  it('field normalization lifts Lindqvist and Reyes from a global 2 to a 3', () => {
     for (const slug of ['marta-lindqvist', 'omar-reyes']) {
       const r = bySlug(slug);
       expect(sIndexGlobal(r.datasets)).toBeLessThan(sIndex(rows(r)));
@@ -134,7 +134,7 @@ describe('landing cards', () => {
       expect(card.score).toBe(sIndex(rows(r!)));
     }
   });
-  it('every researcher and dataset is anonymised (fake ORCID, no DOI shown as identity)', () => {
+  it('every researcher and dataset is anonymized (fake ORCID, no DOI shown as identity)', () => {
     for (const r of RESEARCHER_LIST) {
       expect(r.orcid).toMatch(/^0000-0000-0000-000\d$/);
     }

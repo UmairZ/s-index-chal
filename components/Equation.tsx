@@ -22,7 +22,7 @@ export default function Equation({ interactive = true, onTermClick, highlight }:
   );
 
   return (
-    <div className="eq" role="group" aria-label="The S-index equation. Each coloured piece opens an explanation.">
+    <div className="eq" role="group" aria-label="The S-index equation. Each colored piece opens an explanation.">
       <span className="g">S<sub>norm</sub>&nbsp;=&nbsp;</span>
       {term('gate', 't-gate brace',
         'The qualifying gate: how and where shared, collaborative credit',
@@ -37,7 +37,7 @@ export default function Equation({ interactive = true, onTermClick, highlight }:
             {term('omega', 't-plain', 'Omega: citations', <>ω</>)}
             <span className="g">)&nbsp;×&nbsp;</span>
           </span>
-          {term('norm', 't-p3', 'Mu-g over mu-f: field normalisation, norms and ethics',
+          {term('norm', 't-p3', 'Mu-g over mu-f: field normalization, norms and ethics',
             <>μ<sub>g</sub>/μ<sub>f</sub></>)}
           {term('max', 't-p1', 'Closing the floor: max of 1, inherent value', <>)</>)}
           {term('gate', 't-gate cond',

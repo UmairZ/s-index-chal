@@ -115,7 +115,7 @@ function EqPane({ sel, sValue, onEdit }: { sel: WbRow; sValue: number; onEdit: P
         </div>
       </div>
       <div className="wb-path">
-        normalised against the <b>{sel.subfield ?? 'global'} mean</b>. The field mean is
+        normalized against the <b>{sel.subfield ?? 'global'} mean</b>. The field mean is
         not the researcher&rsquo;s number, so it stays fixed
       </div>
       <p className="wb-out" aria-live="polite">

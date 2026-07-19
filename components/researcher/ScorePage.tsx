@@ -68,7 +68,7 @@ export default function ScorePage({ r }: { r: Researcher }) {
 
   const realCount = r.datasets.filter(d => !d.illustrative).length;
   const hasIllustrative = r.datasets.some(d => d.illustrative);
-  // the same portfolio scored without field normalisation (raw 0.1θ + ω)
+  // the same portfolio scored without field normalization (raw 0.1θ + ω)
   const globalS = sIndexGlobal(r.datasets);
   const fieldS = sIndex(r.datasets.map(d => ({
     sNorm: sNorm(d.theta, d.omega, d.normFactor), qualifies: d.qualifies,
@@ -120,7 +120,7 @@ export default function ScorePage({ r }: { r: Researcher }) {
         <AggregationStrip rows={rows} s={s} />
         {showNormNote && (
           <p className="normnote">
-            Without field normalisation (every dataset measured against one global
+            Without field normalization (every dataset measured against one global
             average), this portfolio would score <b>{globalS}</b>. Weighted against
             each dataset&rsquo;s own field, it&rsquo;s <b>{fieldS}</b>: reuse in a
             lower-citation discipline counts for what it is worth.

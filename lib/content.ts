@@ -18,7 +18,7 @@ export const PRINCIPLES: Principle[] = [
     key: 'p2', title: 'How & where shared',
     body: 'Reuse potential depends on how and where data are shared.',
     maps: 'Gate',
-    note: 'The gate. Reuse needs a FAIR repository (persistent ID, metadata, a clear licence), or the dataset scores 0.',
+    note: 'The gate. Reuse needs a FAIR repository (persistent ID, metadata, a clear license), or the dataset scores 0.',
   },
   {
     key: 'p4', title: 'Data is a team effort',
@@ -35,7 +35,7 @@ export const PRINCIPLES: Principle[] = [
   {
     key: 'p3', title: 'Norms & ethics',
     body: 'Responsible sharing reflects disciplinary norms and ethics. So should the metrics that assess it.',
-    maps: 'Normalisation',
+    maps: 'Normalization',
     note: 'μg/μf, measured against the citation norms of its own discipline.',
   },
 ];
@@ -68,17 +68,17 @@ export const PANELS: Record<TermKey, Panel> = {
     title: 'Qualified, or zero',
     paragraphs: [
       'The equation has two branches. A dataset that qualifies gets scored. A dataset that does not <em>scores zero, no matter how heavily it was downloaded or cited.</em>',
-      'Two principles meet at this brace. <em>How &amp; where shared:</em> reuse is only possible when data lives in a FAIR repository, with a persistent identifier and a clear licence. <em>Data is a team effort:</em> a score is only attributable when every contributor is named, with their role and an ORCID recorded. The gate is not an obstacle in front of the equation. It is the reason the equation means anything.',
+      'Two principles meet at this brace. <em>How &amp; where shared:</em> reuse is only possible when data lives in a FAIR repository, with a persistent identifier and a clear license. <em>Data is a team effort:</em> a score is only attributable when every contributor is named, with their role and an ORCID recorded. The gate is not an obstacle in front of the equation. It is the reason the equation means anything.',
     ],
     checksLead: 'Every dataset must clear all three:',
     checks: [
-      { title: 'Usefulness', body: 'A FAIR repository: persistent ID, metadata, a clear licence.', principle: 'p2' },
+      { title: 'Usefulness', body: 'A FAIR repository: persistent ID, metadata, a clear license.', principle: 'p2' },
       { title: 'Recognition', body: 'A named role and an ORCID for every contributor.', principle: 'p4' },
       { title: 'Ethical responsibility', body: 'Consent, privacy and governance, documented.', principle: 'p4' },
     ],
     links: [
       { label: 'θ: honest downloads →', term: 'theta' },
-      { label: 'Then it gets normalised →', term: 'norm' },
+      { label: 'Then it gets normalized →', term: 'norm' },
     ],
   },
   theta: {
@@ -95,7 +95,7 @@ export const PANELS: Record<TermKey, Panel> = {
       'A download is not a use. A citation is a far stronger claim: <em>this data changed what I could say.</em> So citations weigh ten times more than downloads.',
       'And ω is only measurable at all for data that clears the gate. <em>A dataset with no persistent identifier cannot be cited at all.</em>',
     ],
-    links: [{ label: 'Then it gets normalised →', term: 'norm' }],
+    links: [{ label: 'Then it gets normalized →', term: 'norm' }],
   },
   norm: {
     badge: 'Norms & ethics', principle: 'p3', title: 'Judged inside its own field',
@@ -124,7 +124,7 @@ export const RESEARCHERS = [
   },
   {
     score: 3, slug: 'marta-lindqvist', name: 'Marta Lindqvist',
-    meta: 'Plant genetics · 8 datasets, normalisation lifts a 2 to a 3',
+    meta: 'Plant genetics · 8 datasets, normalization lifts a 2 to a 3',
   },
   {
     score: 3, slug: 'omar-reyes', name: 'Omar Reyes',

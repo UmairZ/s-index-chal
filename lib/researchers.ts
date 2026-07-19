@@ -9,7 +9,7 @@ export interface Dataset {
   theta: number;      // honest downloads (contributors excluded)
   omega: number;      // citations (DataCite)
   normFactor: number; // μg/μf actually applied (>1 boosts lower-citation fields)
-  normPath: NormPath; // which normalisation path fired
+  normPath: NormPath; // which normalization path fired
   subfield: string | null; // named field mean used, or null for the global mean
   qualifies: boolean;
   failedGate: string | null; // named criterion when qualifies === false
@@ -19,7 +19,7 @@ export interface Dataset {
 export interface Researcher {
   slug: string;
   name: string;
-  orcid: string | null; // null once/if the team decides to anonymise
+  orcid: string | null; // null once/if the team decides to anonymize
   field: string;
   scoreSentence: string;
   hook: string; // one-line summary used on cross-links and cards
@@ -41,7 +41,7 @@ export function sIndex(rows: { sNorm: number; qualifies: boolean }[]): number {
   return 0;
 }
 
-// The same index computed on the un-normalised raw score (0.1θ + ω, floored at 1).
+// The same index computed on the un-normalized raw score (0.1θ + ω, floored at 1).
 export function sIndexGlobal(rows: { theta: number; omega: number; qualifies: boolean }[]): number {
   const vals = rows.filter(r => r.qualifies).map(r => Math.max(1, 0.1 * r.theta + r.omega));
   for (let s = vals.length; s >= 1; s--) {
@@ -94,7 +94,7 @@ export function raisePlan(
 // θ, ω, titles and subfield norm factors are the team's measured values
 // (Individual_S_Index_Multi_Researcher_Demo, DataCite counts). Every S_norm and
 // S-index recomputes from these exactly. Researcher NAMES and ORCIDs are
-// pseudonyms (fake, non-resolving placeholders) — the team asked to anonymise
+// pseudonyms (fake, non-resolving placeholders) — the team asked to anonymize
 // the people while keeping the real dataset records. DOIs are kept in the data
 // for uniqueness but are not shown, since a real DOI resolves to the named
 // author. The one constructed row is Vale's `bs-illus`, flagged `illustrative`
@@ -135,7 +135,7 @@ export const RESEARCHER_LIST: Researcher[] = [
     orcid: '0000-0000-0000-0001',
     field: 'Neurology · cognition & vision',
     scoreSentence:
-      'An S-index of 3: three qualifying datasets, each with a field-normalised score of at least 3.',
+      'An S-index of 3: three qualifying datasets, each with a field-normalized score of at least 3.',
     hook: 'Five real datasets, plus an illustrative one stopped at the gate.',
     datasets: [
       SATURN,
@@ -149,10 +149,10 @@ export const RESEARCHER_LIST: Researcher[] = [
         '10.5061/dryad.gn8h3tg', 'Dryad', 2, 1, null),
       {
         id: 'bs-illus',
-        title: 'Illustrative example: retinal dataset without a licence',
+        title: 'Illustrative example: retinal dataset without a license',
         repository: 'personal website', doi: null, year: null,
         theta: 200, omega: 2, normFactor: 1, normPath: 'global', subfield: null,
-        qualifies: false, failedGate: 'no machine-readable licence (FAIR gate)',
+        qualifies: false, failedGate: 'no machine-readable license (FAIR gate)',
         illustrative: true,
       },
     ],
@@ -163,7 +163,7 @@ export const RESEARCHER_LIST: Researcher[] = [
     orcid: '0000-0000-0000-0002',
     field: 'Neurology · cognitive aging',
     scoreSentence:
-      'An S-index of 1: one ORCID-linked qualifying dataset with a normalised score of at least 1.',
+      'An S-index of 1: one ORCID-linked qualifying dataset with a normalized score of at least 1.',
     hook: 'One linked dataset, and that is the finding.',
     raiseNote:
       'For Iris Thorne that is an infrastructure gap, not a sharing gap: deposits that exist today simply do not carry their ORCID, so no pipeline can count them.',
@@ -175,8 +175,8 @@ export const RESEARCHER_LIST: Researcher[] = [
     orcid: '0000-0000-0000-0003',
     field: 'Plant population genetics',
     scoreSentence:
-      'An S-index of 3: three qualifying datasets, each field-normalised to at least 3.',
-    hook: 'Field normalisation lifts a global 2 to a 3.',
+      'An S-index of 3: three qualifying datasets, each field-normalized to at least 3.',
+    hook: 'Field normalization lifts a global 2 to a 3.',
     datasets: [
       ds('lt-stuckenia', 'Stuckenia pectinata gene pools',
         '10.5061/dryad.jwstqjqjb', 'Dryad', 7, 2, 'biological sciences'),
@@ -202,7 +202,7 @@ export const RESEARCHER_LIST: Researcher[] = [
     orcid: '0000-0000-0000-0004',
     field: 'Insect physiology & genomics',
     scoreSentence:
-      'An S-index of 3: three of fifteen qualifying datasets clear a field-normalised score of 3.',
+      'An S-index of 3: three of fifteen qualifying datasets clear a field-normalized score of 3.',
     hook: 'Fifteen datasets, a long floor, an S-index of 3.',
     datasets: [
       ds('jb-sleep-mosq', 'Sleep-like states in mosquitoes',
@@ -243,7 +243,7 @@ export const RESEARCHER_LIST: Researcher[] = [
     orcid: '0000-0000-0000-0005',
     field: 'Evolutionary ecology',
     scoreSentence:
-      'An S-index of 5: five qualifying datasets, each field-normalised to at least 5.',
+      'An S-index of 5: five qualifying datasets, each field-normalized to at least 5.',
     hook: 'A dozen datasets and the demo’s highest S-index.',
     datasets: [
       ds('rf-sexual-systems', 'Global distribution & evolution of angiosperm sexual systems',
