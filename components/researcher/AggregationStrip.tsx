@@ -15,9 +15,8 @@ export default function AggregationStrip({ rows, s }: { rows: AggRow[]; s: numbe
 
   return (
     <section className="agg" aria-label="How the datasets aggregate to the S-index">
-      <div className="k">The aggregation step</div>
       <p className="agg-lead">
-        Each dataset now has its own S<sub>norm</sub>. The final step combines them like
+        Each dataset now has its own S<sub>norm</sub>. The S-index combines them like
         an h-index: rank the qualifying datasets by score, then take the deepest rank
         whose score still clears its own rank number.
       </p>

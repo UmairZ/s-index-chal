@@ -110,6 +110,7 @@ export default function ScorePage({ r }: { r: Researcher }) {
       />
 
       <main className="wrap rmain">
+        <h2 className="step-k"><span className="n" aria-hidden="true">1</span>Score the datasets</h2>
         <Workbench
           rows={rows}
           selected={selected}
@@ -117,6 +118,7 @@ export default function ScorePage({ r }: { r: Researcher }) {
           onSelect={setSelected}
           onEdit={onEdit}
         />
+        <h2 className="step-k"><span className="n" aria-hidden="true">2</span>Aggregate the scores</h2>
         <AggregationStrip rows={rows} s={s} />
         {showNormNote && (
           <p className="normnote">
