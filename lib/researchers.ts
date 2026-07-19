@@ -122,7 +122,7 @@ function ds(
   };
 }
 
-// SATURN is shared: it appears in both Kaye's and Bissig's ORCID-linked records.
+// SATURN is shared: it appears in both Thorne's and Vale's ORCID-linked records.
 const SATURN = ds(
   'saturn', 'SATURN: a self-administered cognitive screening test',
   '10.5061/dryad.02v6wwpzr', 'Dryad', 391, 2, null,
@@ -161,12 +161,12 @@ export const RESEARCHER_LIST: Researcher[] = [
     slug: 'iris-thorne',
     name: 'Iris Thorne',
     orcid: '0000-0000-0000-0002',
-    field: 'Neurology · cognitive ageing',
+    field: 'Neurology · cognitive aging',
     scoreSentence:
       'An S-index of 1: one ORCID-linked qualifying dataset with a normalised score of at least 1.',
     hook: 'One linked dataset, and that is the finding.',
     raiseNote:
-      'For Jeffrey Kaye that is an infrastructure gap, not a sharing gap: deposits that exist today simply do not carry his ORCID, so no pipeline can count them.',
+      'For Iris Thorne that is an infrastructure gap, not a sharing gap: deposits that exist today simply do not carry their ORCID, so no pipeline can count them.',
     datasets: [SATURN],
   },
   {

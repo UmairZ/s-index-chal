@@ -64,11 +64,11 @@ export const PANELS: Record<TermKey, Panel> = {
     links: [{ label: 'But first it must qualify →', term: 'gate' }],
   },
   gate: {
-    badge: 'How & where shared · Collaborative credit', principle: 'gate',
+    badge: 'How & where shared · Data is a team effort', principle: 'gate',
     title: 'Qualified, or zero',
     paragraphs: [
       'The equation has two branches. A dataset that qualifies gets scored. A dataset that does not <em>scores zero, no matter how heavily it was downloaded or cited.</em>',
-      'Two principles meet at this brace. <em>How &amp; where shared:</em> reuse is only possible when data lives in a FAIR repository, with a persistent identifier and a clear licence. <em>Collaborative credit:</em> a score is only attributable when every contributor is named, with their role and an ORCID recorded. The gate is not an obstacle in front of the equation. It is the reason the equation means anything.',
+      'Two principles meet at this brace. <em>How &amp; where shared:</em> reuse is only possible when data lives in a FAIR repository, with a persistent identifier and a clear licence. <em>Data is a team effort:</em> a score is only attributable when every contributor is named, with their role and an ORCID recorded. The gate is not an obstacle in front of the equation. It is the reason the equation means anything.',
     ],
     checksLead: 'Every dataset must clear all three:',
     checks: [
