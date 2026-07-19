@@ -144,6 +144,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .term.zero{display:inline-flex;align-items:baseline;gap:10px;color:var(--p4-l)}
 .term.zero .ow{font:600 .58em var(--sans);font-style:italic;opacity:.9}
 .term.zero::after{background:var(--p4-l)}
+/* the standalone 0 uses a plain (non-slashed) glyph so it doesn't read like θ */
+.term.zero .z,.wb-branch .z,.wb-out .z0{font-family:var(--sans);font-variant-numeric:lining-nums}
 @media(max-width:700px){
   .eq{font-size:14.5px}
   .eq .branch{flex-wrap:wrap;white-space:normal;row-gap:6px}

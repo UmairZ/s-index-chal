@@ -82,7 +82,7 @@ export const PANELS: Record<TermKey, Panel> = {
     ],
   },
   theta: {
-    badge: 'In the equation', principle: 'plain', title: 'θ: honest downloads',
+    badge: 'In the equation', principle: 'plain', title: 'Utility (θ): honest downloads',
     paragraphs: [
       'θ counts downloads <em>by people who are not contributors</em>. Nothing stops a researcher downloading their own dataset ten thousand times, unless the record says who they are.',
       'That is one reason the gate requires every contributor to be named: without ORCID on the record, honest downloads cannot be counted at all.',
@@ -90,7 +90,7 @@ export const PANELS: Record<TermKey, Panel> = {
     links: [{ label: 'Citations weigh more →', term: 'omega' }],
   },
   omega: {
-    badge: 'In the equation', principle: 'plain', title: 'ω: citations, ten to one',
+    badge: 'In the equation', principle: 'plain', title: 'Impact (ω): citations, ten to one',
     paragraphs: [
       'A download is not a use. A citation is a far stronger claim: <em>this data changed what I could say.</em> So citations weigh ten times more than downloads.',
       'And ω is only measurable at all for data that clears the gate. <em>A dataset with no persistent identifier cannot be cited at all.</em>',
