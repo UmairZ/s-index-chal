@@ -16,7 +16,8 @@ export interface Principle {
 export const PRINCIPLES: Principle[] = [
   {
     key: 'p2', title: 'How & where shared',
-    body: 'Reuse potential depends on how and where data are shared.',
+    // manual line breaks so this shorter body fills three lines like the others
+    body: 'Reuse potential\ndepends on how and where\ndata are shared.',
     maps: 'Gate',
     note: 'The gate. Reuse needs a FAIR repository (persistent ID, metadata, a clear license), or the dataset scores 0.',
   },
