@@ -389,7 +389,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 /* ---- aggregation strip ---- */
 .agg{background:#fff;border:1px solid var(--rule);border-radius:16px;
   padding:22px 24px;margin-top:16px}
-.agg-cap{font:500 15.5px/1.4 var(--sans);color:var(--ink-2);margin-bottom:16px}
+.agg .k{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--p1);margin-bottom:12px}
+.agg-lead{margin:0 0 12px;font:400 14px/1.6 var(--sans);color:var(--ink-2);max-width:72ch}
+.agg-cap{font:500 15.5px/1.4 var(--sans);color:var(--ink-2);
+  margin:22px 0 16px;padding-top:18px;border-top:1px solid var(--rule)}
 .agg-cap b{color:var(--ink)}
 .agg-row{display:flex;align-items:center;gap:14px;margin:9px 0}
 .agg-row .t{flex:none;width:210px;font:500 13.5px/1.35 var(--sans);
@@ -405,10 +409,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   font:600 11.5px/1 var(--mono);color:var(--ink-2)}
 .agg-dq{margin-top:12px;font:500 13.5px/1.4 var(--sans);color:var(--p4)}
 .agg-snote{margin-top:14px;font:400 12.5px/1.4 var(--sans);color:var(--ink-3)}
-/* the aggregation-math explainer — modest, below the bars */
-.agg-agg{margin-top:16px;padding-top:16px;border-top:1px solid var(--rule)}
-.agg-agg p{margin:0 0 10px;font:400 13.5px/1.55 var(--sans);color:var(--ink-2);max-width:72ch}
-.agg-eq{font:500 15px/1.5 var(--mono);color:var(--ink);letter-spacing:-.01em}
+/* the aggregation formula — introduces the step, above the bars */
+.agg-eq{font:500 15.5px/1.5 var(--mono);color:var(--ink);letter-spacing:-.01em}
 .agg-eq sub{font-size:.72em}
 .agg-eq-note{display:block;margin-top:6px;font:400 12.5px/1.45 var(--sans);color:var(--ink-3)}
 @media (max-width:640px){.agg-row .t{width:110px}}
