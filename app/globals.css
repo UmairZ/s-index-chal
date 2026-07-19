@@ -405,6 +405,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   font:600 11.5px/1 var(--mono);color:var(--ink-2)}
 .agg-dq{margin-top:12px;font:500 13.5px/1.4 var(--sans);color:var(--p4)}
 .agg-snote{margin-top:14px;font:400 12.5px/1.4 var(--sans);color:var(--ink-3)}
+/* the aggregation-math explainer — modest, below the bars */
+.agg-agg{margin-top:16px;padding-top:16px;border-top:1px solid var(--rule)}
+.agg-agg p{margin:0 0 10px;font:400 13.5px/1.55 var(--sans);color:var(--ink-2);max-width:72ch}
+.agg-eq{font:500 15px/1.5 var(--mono);color:var(--ink);letter-spacing:-.01em}
+.agg-eq sub{font-size:.72em}
+.agg-eq-note{display:block;margin-top:6px;font:400 12.5px/1.45 var(--sans);color:var(--ink-3)}
 @media (max-width:640px){.agg-row .t{width:110px}}
 @media (prefers-reduced-motion: reduce){.fill{transition:none}}
 

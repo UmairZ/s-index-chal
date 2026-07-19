@@ -49,6 +49,22 @@ export default function AggregationStrip({ rows, s }: { rows: AggRow[]; s: numbe
         Bar lengths use a square-root scale so small scores stay visible. The dashed line
         is the S-index cutoff.
       </div>
+      <div className="agg-agg">
+        <p>
+          Aggregation is the h-index step. Rank the qualifying datasets by
+          S<sub>norm</sub>, then take the deepest rank whose score still clears its own
+          rank number.
+        </p>
+        <div
+          className="agg-eq"
+          aria-label="S-index equals the largest i in zero to n such that the i-th largest S-norm score is at least i"
+        >
+          S<sub>index</sub> = max {'{'} i ∈ {'{'}0, …, n{'}'} : S<sub>norm,(i)</sub> ≥ i {'}'}
+        </div>
+        <span className="agg-eq-note">
+          where S<sub>norm,(i)</sub> is the i-th largest score
+        </span>
+      </div>
     </section>
   );
 }
