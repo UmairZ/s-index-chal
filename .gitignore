@@ -4,3 +4,11 @@ node_modules/
 .next/
 .vercel
 tsconfig.tsbuildinfo
+
+# AI tooling and internal working documents
+CLAUDE.md
+AGENTS.md
+.claude/
+docs/superpowers/
+*-discovery-spec.md
+dev-server.log
