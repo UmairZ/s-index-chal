@@ -15,7 +15,7 @@ export default function RaiseScore({ rows, s, note }: Props) {
       <div className="k">What would raise this score?</div>
       <p className="raise-lead">
         Moving from S-index {s} to <b>{p.target}</b> takes {p.target} qualifying datasets
-        each scoring S<sub>norm</sub> ≥ {p.target}. So far {p.have}
+        each scoring S<sub>norm</sub> ≥ {p.target}. So far {p.have}{' '}
         clear{p.have === 1 ? 's' : ''} that bar,
         and {p.needed === 1 ? 'one more has' : `${p.needed} more have`} to get there.
       </p>
